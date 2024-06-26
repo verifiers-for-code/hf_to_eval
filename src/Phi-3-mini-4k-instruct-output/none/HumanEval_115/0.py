@@ -1,5 +1,3 @@
-import math
-
 def max_fill(grid, capacity):
     """
     You are given a rectangular grid of wells. Each row represents a single well,
@@ -9,6 +7,7 @@ def max_fill(grid, capacity):
     Your task is to use the buckets to empty the wells.
     Output the number of times you need to lower the buckets.
     """
+    import math
     rows = len(grid)
     cols = len(grid[0])
     total_water = 0
@@ -16,4 +15,6 @@ def max_fill(grid, capacity):
     for row in grid:
         total_water += sum(row)
 
-    return math.ceil(total_water / capacity)
+    bucket_count = math.ceil(total_water / capacity)
+
+    return bucket_count

@@ -44,4 +44,5 @@ def numerical_letter_grade(grades):
         elif grade >= 0.7:
             letter_grades.append('D')
         else:
-            letter_grades.append('D-
+            letter_grades.append('D-')
+    return letter_grades

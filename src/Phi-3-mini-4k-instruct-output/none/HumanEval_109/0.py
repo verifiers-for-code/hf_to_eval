@@ -27,12 +27,11 @@ def move_one_ball(arr):
     if not arr:
         return True
 
-    # Find the minimum and maximum elements in the array
-    min_val, max_val = min(arr), max(arr)
+    n = len(arr)
+    sorted_arr = sorted(arr)
 
-    # If the minimum and maximum elements are already in their correct positions,
-    # then it is possible to sort the array by performing right shift operations
-    if arr.index(min_val) < arr.index(max_val):
-        return True
+    for i in range(n):
+        if arr[i:] + arr[:i] == sorted_arr:
+            return True
 
     return False
