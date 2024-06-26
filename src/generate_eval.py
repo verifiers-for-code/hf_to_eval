@@ -25,10 +25,19 @@ EVAL_NONE = True
 NONE_PROMPT_COL = "prompt"
 # New Token Count
 MAX_TOKENS = 2048
+# Eval only mode (no generation)
+EVAL_ONLY = False
 # ==== END CONFIG ==== #
 __MAGIC_SPLITTER__ = "-[[]]-this-is-really-our-highest-priority-[[]]-"
 
 def main():
+    if EVAL_ONLY:
+        if EVAL_GOLD:
+            run_evalplus(os.path.join(OUTPUT_DIR, "gold_plan"))
+        if EVAL_NONE:
+            run_evalplus(os.path.join(OUTPUT_DIR, "none"))
+        return
+
     response = f"""
 Below is a self-contained Python script that solves the problem: 
 ```python 
