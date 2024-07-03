@@ -13,7 +13,7 @@ def add_elements(arr, k):
         2. 1 <= k <= len(arr)
     """
 
-    # Step 1: Implement a filtering step for the first k elements of the array
+    # Step 1: Filter the first k elements of the array
     filtered_arr = [num for num in arr[:k]]
 
     # Step 2: Define a helper function to check if a number has at most two digits
@@ -21,9 +21,8 @@ def add_elements(arr, k):
         # Treat negative numbers as positive
         num = abs(num)
         # Count the number of digits in the number
-        num_digits = len(str(num))
-        # Return True if the number has one or two digits
-        return num_digits <= 2
+        num_str = str(num)
+        return len(num_str) <= 2
 
     # Step 3: Apply the helper function to the filtered list
     filtered_arr = [num for num in filtered_arr if has_at_most_two_digits(num)]

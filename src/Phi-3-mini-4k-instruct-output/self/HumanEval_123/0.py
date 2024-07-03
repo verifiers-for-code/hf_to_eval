@@ -40,21 +40,17 @@ def get_odd_collatz(n):
     
     7. Ensure correctness by testing the function with the provided examples and additional test cases.
     """
-    def collatz_sequence(n):
-        """Helper function to generate the Collatz sequence for a given number."""
-        if n == 1:
-            return [1]
-        sequence = [n]
-        while n != 1:
-            if n % 2 == 0:
-                n = n // 2
-            else:
-                n = 3 * n + 1
-            sequence.append(n)
-        return sequence
-
     if n < 1:
         return []
+
+    def collatz_sequence(n):
+        if n == 1:
+            return [1]
+        elif n % 2 == 0:
+            return [n] + collatz_sequence(n // 2)
+        else:
+            return [n] + collatz_sequence(3 * n + 1)
+
     sequence = collatz_sequence(n)
     odd_numbers = [num for num in sequence if num % 2 != 0]
     odd_numbers.sort()

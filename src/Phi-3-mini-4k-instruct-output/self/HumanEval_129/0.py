@@ -33,14 +33,15 @@ def minPath(grid, k):
     if n < 2:
         raise ValueError("Grid must have at least 2 rows and 2 columns.")
     if len(grid) != len(grid[0]):
-        raise ValueError("Grid must be a square matrix.")
+        raise ValueError("Grid must be square (N x N).")
     if any(len(row) != n for row in grid):
-        raise ValueError("All rows in the grid must have the same length.")
-    if any(not 1 <= cell <= n * n for row in grid for cell in row):
-        raise ValueError("Grid values must be in the range [1, N * N].")
+        raise ValueError("Grid must be square (N x N).")
+    if any(not 1 <= cell <= n**2 for row in grid for cell in row):
+        raise ValueError("Grid must contain unique values from 1 to N^2.")
 
     # Define data structures and functions
     def generate_paths(start, k):
+        """Generate all valid k-length paths from the start cell."""
         if k == 0:
             return [[start]]
         paths = []
@@ -48,14 +49,12 @@ def minPath(grid, k):
             x, y = start[0] + dx, start[1] + dy
             if 0 <= x < n and 0 <= y < n:
                 for path in generate_paths((x, y), k - 1):
-                    paths.append([grid[start[0]][start[1]]] + path)
+                    paths.append([start] + path)
         return paths
 
     def compare_paths(path1, path2):
-        for i in range(min(len(path1), len(path2))):
-            if path1[i] != path2[i]:
-                return path1[i] - path2[i]
-        return len(path1) - len(path2)
+        """Compare two paths lexicographically."""
+        return path1 < path2
 
     # Explore paths
     all_paths = []
@@ -64,7 +63,7 @@ def minPath(grid, k):
             all_paths.extend(generate_paths((i, j), k))
 
     # Lexicographic comparison
-    min_path = min(all_paths, key=lambda path: (len(path), path))
+    min_path = min(all_paths, key=lambda path: [grid[x][y] for x, y in path])
 
     # Finalize output
-    return min_path
+    return [grid[x][y] for x, y in min_path]

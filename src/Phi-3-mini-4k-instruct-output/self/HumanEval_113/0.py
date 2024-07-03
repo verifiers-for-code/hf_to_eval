@@ -11,7 +11,6 @@ def odd_count(lst):
     ["the number of odd elements 1n the str1ng 1 of the 1nput.",
      "the number of odd elements 8n the str8ng 8 of the 8nput."]
     
-
     Action Plan:
     1. Create a helper function:
         a. Define a function that takes a string and returns the count of odd digits
@@ -30,13 +29,14 @@ def odd_count(lst):
         a. Add appropriate docstrings to explain the purpose and expected behavior of the function
         b. Make sure comments are clear for each step and any important considerations
     """
+
     def count_odd_digits(s):
         """
-        Helper function to count odd digits in a string.
+        Helper function to count the number of odd digits in a string.
         """
         return sum(1 for char in s if char.isdigit() and int(char) % 2 != 0)
 
-    # Main function implementation
+    # Main function to process the list of strings
     result = []
     for i, s in enumerate(lst):
         if s.isdigit():

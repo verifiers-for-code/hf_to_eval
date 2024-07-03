@@ -3,7 +3,6 @@ def triangle_area(a, h):
     >>> triangle_area(5, 3)
     7.5
     
-
     Action Plan:
     1. Implement the formula for the area of a triangle: Area = 0.5 * base * height
         a. Recognize that the provided side can serve as the base

@@ -14,8 +14,8 @@ def remove_vowels(text):
     >>> remove_vowels('zbcd')
     'zbcd'
     """
-    vowels = set("aeiouAEIOU")
-    result = ""
+    vowels = set('aeiouAEIOU')
+    result = ''
     for char in text:
         if char not in vowels:
             result += char

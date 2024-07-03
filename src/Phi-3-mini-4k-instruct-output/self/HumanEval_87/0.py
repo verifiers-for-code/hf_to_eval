@@ -46,8 +46,15 @@ def get_row(lst, x):
             for j, val in enumerate(sublist):
                 if val == x:
                     coordinates.append((i, j))
-                    break
 
-    coordinates = list(set(coordinates))  # Remove duplicates
-    coordinates.sort(key=lambda x: (x[0], -x[1]))  # Sort by row and then by column in descending order
+    # Remove duplicates
+    coordinates = list(set(coordinates))
+
+    # Custom sort function
+    def custom_sort(coord):
+        return (coord[0], -coord[1])
+
+    # Sort coordinates
+    coordinates.sort(key=custom_sort)
+
     return coordinates

@@ -38,11 +38,23 @@ def compare(game, guess):
     if len(game) != len(guess):
         raise ValueError("The input lists must have the same length.")
 
+    # Initialize an empty list to store the result values
     differences = []
+
+    # Loop through the lists with indices
     for index in range(len(game)):
+        # Retrieve the corresponding elements from both lists
         score = game[index]
         guess_value = guess[index]
-        difference = abs(score - guess_value)
-        differences.append(difference)
 
+        # Calculate the absolute difference between the elements from both lists
+        difference = abs(score - guess_value)
+
+        # Add the computed difference to the differences list
+        if difference == 0:
+            differences.append(0)
+        else:
+            differences.append(difference)
+
+    # Return the differences list as the final result
     return differences

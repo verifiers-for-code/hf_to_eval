@@ -40,9 +40,13 @@ def car_race_collision(n: int):
         # Loop through the cars moving from the right set
         for right_car in right_cars:
             # Check if the cars are close enough to collide
-            if abs(left_car - right_car) == 1:
+            if abs(left_car - right_car) <= 1:
                 # Increment the collision count
                 collisions += 1
+                # Remove the collided cars from the sets
+                left_cars.discard(left_car)
+                right_cars.discard(right_car)
+                break
     
     # Output the final count of collisions
     return collisions

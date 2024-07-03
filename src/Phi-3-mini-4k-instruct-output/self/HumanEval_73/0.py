@@ -34,22 +34,26 @@ def smallest_change(arr):
         - An array that is already palindrome requires 0 changes
         - An empty or single-element array requires no changes
     
-    7. Document the function's logic and results for testing
-    """
+    7. Document the function's logic and results for testing"""
+
+    def is_palindrome(arr):
+        """Check if a subarray is a palindrome."""
+        for i in range(len(arr) // 2):
+            if arr[i] != arr[-i - 1]:
+                return False
+        return True
+
     n = len(arr)
     if n == 0 or n == 1:
         return 0
-    
+
     min_changes = float('inf')
-    
-    def is_palindrome(subarr):
-        return subarr == subarr[::-1]
-    
+
     for i in range(n):
         for j in range(i, n):
-            subarr = arr[i:j+1]
-            if not is_palindrome(subarr):
-                changes = sum([1 for k in range(len(subarr)) if subarr[k] != subarr[-k-1]])
+            subarray = arr[i:j + 1]
+            if not is_palindrome(subarray):
+                changes = sum(1 for k in range(len(subarray)) if subarray[k] != subarray[-k - 1])
                 min_changes = min(min_changes, changes)
-    
+
     return min_changes

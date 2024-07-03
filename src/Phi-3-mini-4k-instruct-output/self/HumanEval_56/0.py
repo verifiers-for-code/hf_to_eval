@@ -44,7 +44,12 @@ def correct_bracketing(brackets: str):
             if not stack:
                 # If the stack is empty, return False
                 return False
-            stack.pop()
+            else:
+                # If the corresponding opening bracket doesn't match, return False
+                if stack[-1] != "<":
+                    return False
+                # If the corresponding opening bracket matches, remove it from the stack
+                stack.pop()
 
-    # After the iteration, if the stack is empty, all brackets were properly matched
+    # After the iteration, if the stack is empty, all brackets were properly matched and return True
     return not stack

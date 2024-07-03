@@ -1,12 +1,13 @@
 from typing import List
 
 def mean_absolute_deviation(numbers: List[float]) -> float:
-    """
-    For a given list of input numbers, calculate Mean Absolute Deviation
+    """ For a given list of input numbers, calculate Mean Absolute Deviation
     around the mean of this dataset.
     Mean Absolute Deviation is the average absolute difference between each
     element and a centerpoint (mean in this case):
     MAD = average | x - x_mean |
+    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
+    1.0
     
     Action Plan:
     1. Calculate the mean of the input list:
@@ -30,13 +31,19 @@ def mean_absolute_deviation(numbers: List[float]) -> float:
     
     6. Testing:
         a. Confirm that the function returns correct results for given test cases
-        b. Consider corner cases and random inputs with large numbers, and small numbers
-    """
+        b. Consider corner cases and random inputs with large numbers, and small numbers"""
+
+    # Edge case: empty list
     if not numbers:
         return 0.0
-    
+
+    # Calculate the mean of the input list
     mean = sum(numbers) / len(numbers)
+
+    # Create a new list with absolute differences
     abs_diffs = [abs(x - mean) for x in numbers]
+
+    # Calculate the mean of the absolute differences
     mad = sum(abs_diffs) / len(numbers)
-    
+
     return mad

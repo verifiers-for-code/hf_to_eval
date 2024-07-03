@@ -33,15 +33,13 @@ def fib4(n: int):
     
     6. Remember to return the value in the correct order (nth element)"""
     
-    # Step 1: Initialize the Fib4 sequence with the first four elements
-    fib4_sequence = [0, 0, 2, 0]
+    # Initialize the Fib4 sequence with the first four elements
+    fib4_seq = [0, 0, 2, 0]
     
-    # Step 2: Compute the values beyond the initial four elements
+    # Compute the values beyond the initial predefined four elements
     for i in range(4, n+1):
-        # Compute the next value by summing the last four elements
-        next_value = fib4_sequence[i-1] + fib4_sequence[i-2] + fib4_sequence[i-3] + fib4_sequence[i-4]
-        # Append the next value to the sequence
-        fib4_sequence.append(next_value)
+        next_val = fib4_seq[i-1] + fib4_seq[i-2] + fib4_seq[i-3] + fib4_seq[i-4]
+        fib4_seq.append(next_val)
     
-    # Step 3: Return the n-th element of the sequence
-    return fib4_sequence[n]
+    # Return the n-th element of the sequence
+    return fib4_seq[n]

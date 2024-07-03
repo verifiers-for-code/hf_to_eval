@@ -1,12 +1,15 @@
 from typing import List
 
+
 def separate_paren_groups(paren_string: str) -> List[str]:
-    """
-    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
     separate those group into separate strings and return the list of those.
     Separate groups are balanced (each open brace is properly closed) and not nested within each other
     Ignore any spaces in the input string.
+    >>> separate_paren_groups('( ) (( )) (( )( ))')
+    ['()', '(())', '(()())']
     
+
     Action Plan:
     1. Initial Preprocessing:
         a. Remove all spaces from the input string
@@ -31,30 +34,33 @@ def separate_paren_groups(paren_string: str) -> List[str]:
     
     6. Optimization Considerations:
         a. Use efficient string concatenation methods
-        b. Process the string in a single pass to ensure time efficiency
-    """
-    # Initial Preprocessing
-    paren_string = paren_string.replace(' ', '')
-    
+        b. Process the string in a single pass to ensure time efficiency"""
+
+    # Initial Preprocessing: Remove all spaces from the input string
+    paren_string = paren_string.replace(" ", "")
+
+    # Stack-based Parentheses Tracking
     stack = []
     current_group = []
     result = []
-    
+
     for char in paren_string:
-        if char == '(':
+        if char == "(":
             stack.append(char)
             current_group.append(char)
-        elif char == ')':
+        elif char == ")":
             if stack:
                 stack.pop()
                 current_group.append(char)
             else:
                 # Ignore unbalanced parentheses
                 continue
+
+        # Handling Separation
         if not stack:
-            # Separation handling
-            result.append(''.join(current_group))
+            # When the stack is empty, it indicates the start of a new group
+            result.append("".join(current_group))
             current_group = []
-    
-    # Return the result
+
+    # Returning the results
     return result

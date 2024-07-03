@@ -27,19 +27,27 @@ def sort_even(l: list):
     6. Edge cases:
         - Consider the implications of an input list with an even number of elements or all odd/all even elements.
         - Special handling may be necessary to avoid errors during the merge step."""
-    
+
     def sort_list_with_indices(l: list):
         """Sorts a list while keeping the original indices untouched."""
-        return sorted(range(len(l)), key=lambda k: l[k])
-    
+        return sorted(range(len(l)), key=lambda i: l[i])
+
     even_indices = sort_list_with_indices([l[i] for i in range(len(l)) if i % 2 == 0])
     odd_indices = [l[i] for i in range(len(l)) if i % 2 != 0]
-    
-    l_prime = []
+
+    sorted_even_indices = [even_indices[i] for i in range(len(even_indices)) if i % 2 == 0]
+    sorted_odd_indices = [odd_indices[i] for i in range(len(odd_indices)) if i % 2 != 0]
+
+    result = []
+    even_index = 0
+    odd_index = 0
+
     for i in range(len(l)):
         if i % 2 == 0:
-            l_prime.append(even_indices.pop(0))
+            result.append(sorted_even_indices[even_index])
+            even_index += 1
         else:
-            l_prime.append(odd_indices.pop(0))
-    
-    return l_prime
+            result.append(sorted_odd_indices[odd_index])
+            odd_index += 1
+
+    return result

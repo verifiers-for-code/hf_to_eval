@@ -40,11 +40,11 @@ def choose_num(x, y):
         return -1
 
     # Generate a list of even numbers within the range
-    even_numbers = [num for num in range(x, y + 1) if num % 2 == 0]
+    even_nums = [num for num in range(x, y + 1) if num % 2 == 0]
 
     # Handling the absence of an even number
-    if not even_numbers:
+    if not even_nums:
         return -1
 
     # Finding the maximum even number
-    return max(even_numbers)
+    return max(even_nums)

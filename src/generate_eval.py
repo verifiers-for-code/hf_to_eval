@@ -12,7 +12,7 @@ MODEL = "microsoft/Phi-3-mini-4k-instruct"
 # MODEL = "microsoft/Phi-3-mini-4k-instruct:4f818b1"
 MODEL_NAME = MODEL.split('/')[-1]
 # HF
-DATASET = "verifiers-for-code/humaneval_plan_generation"
+DATASET = "verifiers-for-code/gold_tester_llama"
 # Output dir name
 OUTPUT_DIR = MODEL_NAME + "-output"
 # Choose GPU Count
@@ -26,7 +26,7 @@ GOLD_PROMPT_COL = "cleaned_sonnet-3.5_gold_plans"
 EVAL_NONE = False
 NONE_PROMPT_COL = "prompt"
 
-EVAL_PLANNER_NON_GRAN = True
+EVAL_PLANNER_NON_GRAN = False
 PLANNER_PROMPT_NON_GRAN_COL = "cleaned-phi3-planner-plans"
 
 EVAL_SELF = False
@@ -34,12 +34,15 @@ SELF_PROMPT_COL = "cleaned-self_planning_Phi-3-mini-4k-instruct"
 
 EVAL_PLANNER_GRAN = False
 PLANNER_PROMPT_GRAN_COL = "cleaned-phi3-planner-granular"
+
+EVAL_PLANNER_LLAMA_GOLD = True
+PLANNER_PROMPT_LLAMA_GOLD_COL = "cleaned-gold_plans_llama-3-70B"
 # New Token Count
 MAX_TOKENS = 2048
 # Eval only mode (no generation)
 EVAL_ONLY = False
 # Force Plans In Docstring (everything but gold plans are forced to generate rules)
-FORCE_PLANS = True
+FORCE_PLANS = False
 # ==== END CONFIG ==== #
 __MAGIC_SPLITTER__ = "-[[]]-this-is-really-our-highest-priority-[[]]-"
 assert len(os.environ["CUDA_VISIBLE_DEVICES"]) == NUM_GPUS, "CUDA_VISIBLE_DEVICES < or > NUM_GPUS"
@@ -97,6 +100,9 @@ Below is a self-contained Python script that solves the problem:
     
     if EVAL_SELF:
         process_mode("self", DATASET, SELF_PROMPT_COL, llm, tokenizer, sampling_params, response)
+        
+    if EVAL_PLANNER_LLAMA_GOLD:
+        process_mode("llama_gold", DATASET, PLANNER_PROMPT_LLAMA_GOLD_COL, llm, tokenizer, sampling_params, response)
 
 def process_mode(mode, dataset_name, prompt_key, llm, tokenizer, sampling_params, response):
     dataset = load_dataset(dataset_name, split="test")

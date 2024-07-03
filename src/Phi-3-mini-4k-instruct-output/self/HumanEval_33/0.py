@@ -27,10 +27,11 @@ def sort_third(l: list):
         - If no indices are divisible by three, return the original list
         - If all indices are divisible by three, sort the values and return the new list
     
-    6. Optimization:
+    5. Optimization:
         - Avoid modifying the lists during iteration if possible
     
-    7. Test with given examples and potential edge cases"""
+    6. Test with given examples and potential edge cases"""
+    
     if not l:
         return []
     
@@ -38,12 +39,16 @@ def sort_third(l: list):
     if not divisible_indices:
         return l
     
-    sorted_values = sorted([l[i] for i in divisible_indices])
+    values_at_divisible_indices = [l[i] for i in divisible_indices]
+    values_at_non_divisible_indices = [l[i] for i in range(len(l)) if i not in divisible_indices]
+    
+    sorted_values_at_divisible_indices = sorted(values_at_divisible_indices)
+    
     result = []
-    for i, x in enumerate(l):
+    for i, value in enumerate(l):
         if i in divisible_indices:
-            result.append(sorted_values.pop(0))
+            result.append(sorted_values_at_divisible_indices.pop(0))
         else:
-            result.append(x)
+            result.append(value)
     
     return result

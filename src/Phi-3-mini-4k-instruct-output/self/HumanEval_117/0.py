@@ -43,13 +43,14 @@ def select_words(s, n):
         return count
     
     # Main function to select words with exactly n consonants
-    if not s:
+    if not s:  # Handle empty string case
         return []
     
-    words = s.split()
-    matching_words = []
-    for word in words:
-        if count_consonants(word) == n:
-            matching_words.append(word)
+    words = s.split()  # Split the string into words
+    matching_words = []  # Initialize list to store matching words
     
-    return matching_words
+    for word in words:
+        if count_consonants(word) == n:  # Check if the word has exactly n consonants
+            matching_words.append(word)  # Append the word to the list of matching words
+    
+    return matching_words  # Return the list of matching words

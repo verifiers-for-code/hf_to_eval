@@ -1,7 +1,17 @@
 def sum_to_n(n: int):
-    """
-    sum_to_n is a function that sums numbers from 1 to n.
+    """sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
     
+
     Action Plan:
     1. Discuss the concept of the sum of arithmetic series:
         a. This series has a known formula: n * (n + 1) / 2
@@ -14,11 +24,11 @@ def sum_to_n(n: int):
     4. Optimize:
         - Since this is a problem with a direct formula, iteration is not necessary, ensuring optimal performance
     
-    5. Verify the function's accuracy against the provided test cases and consider additional edge cases, such as zero and negative input values
-    """
-    if n < 0:
-        return "Error: Input must be a non-negative integer."
-    elif n == 0:
+    5. Verify the function's accuracy against the provided test cases and consider additional edge cases, such as zero and negative input values"""
+
+    # Check for edge cases
+    if n < 1:
         return 0
-    else:
-        return int(n * (n + 1) / 2)
+
+    # Calculate the sum using the formula
+    return int(n * (n + 1) / 2)

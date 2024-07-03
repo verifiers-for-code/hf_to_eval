@@ -35,22 +35,31 @@ def histogram(test):
         - Handle strings with multiple identical characters correctly
     
     7. Return the dictionary with letters and their corresponding counts"""
-    if not test:
-        return {}
-    
-    letters = set(test.split())
+
+    # Step 1: Initialize the input string and create a list of unique letters
+    letters = test.split()
+
+    # Step 2: Create an empty dictionary to hold letter occurrences
     letter_counts = {}
-    
+
+    # Step 3: Iterate over each letter in the list
     for letter in letters:
         if letter not in letter_counts:
             letter_counts[letter] = 1
         else:
             letter_counts[letter] += 1
-    
+
+    # Step 4: Determine the maximum occurrence
     max_count = max(letter_counts.values())
+
+    # Step 5: Collect the letters with max_count
     result = [letter for letter, count in letter_counts.items() if count == max_count]
-    
-    if len(result) == 1:
-        return {result[0]: max_count}
-    else:
-        return {letter: max_count for letter in result}
+
+    # Step 6: Handle edge cases
+    if not letters:
+        return {}
+    elif len(set(letters)) == 1:
+        return {letters[0]: 1}
+
+    # Step 7: Return the dictionary with letters and their corresponding counts
+    return {letter: max_count for letter in result}

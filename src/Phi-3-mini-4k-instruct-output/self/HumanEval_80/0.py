@@ -31,24 +31,21 @@ def is_happy(s):
     6. After the loop completes (no duplicates found), check if the length of the string is at least 3:
         a. Return True if so, else return False"""
     
-    # Validate input
+    # Step 1: Validate input
     if len(s) < 3:
         return False
     
-    # Initialize a set to keep track of checked substrings
-    checked_substrings = set()
-    
-    # Iterate through the string with a sliding window of 3 letters
+    # Step 2: Iterate through the string with a sliding window of 3 letters
     for i in range(len(s) - 2):
-        # Extract the current 3-letter substring
+        # Step 3: Create a sub-string of 3 consecutive letters
         current_substring = s[i:i+3]
         
-        # Check if the current substring has been checked before
+        # Step 4: Compare the current substring with previous substrings
         if current_substring in checked_substrings:
             return False
         
-        # Add the current substring to the set of checked substrings
+        # Step 5: Keep track of checked substrings using a set data structure
         checked_substrings.add(current_substring)
     
-    # Check if the length of the string is at least 3
+    # Step 6: Check if the length of the string is at least 3
     return True

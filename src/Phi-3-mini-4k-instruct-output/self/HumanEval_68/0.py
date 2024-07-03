@@ -45,8 +45,8 @@ def pluck(arr):
     
     3. After the loop, if `smallest_even` remains None, return an empty list as no even values exist.
     
-    4. Otherwise, return a list `[smallest_even, smallest_even_index]` as the result."""
-
+    4. Otherwise, return a list `[smallest_even, smallest_even_index]` as the result.
+    """
     smallest_even = None
     smallest_even_index = None
 

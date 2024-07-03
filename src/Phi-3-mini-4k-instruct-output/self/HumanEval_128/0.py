@@ -35,8 +35,8 @@ def prod_signs(arr):
         - If the input array is empty, return None
         - If the array contains only zeroes, return 0 since the product of signs and magnitudes would be zero
     
-    6. Return the computed sum"""
-    
+    6. Return the computed sum
+    """
     if not arr:
         return None
     

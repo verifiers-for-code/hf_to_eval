@@ -2,9 +2,9 @@ from typing import List
 import re
 
 def parse_music(music_string: str) -> List[int]:
-    """
-    Input to this function is a string representing musical notes in a special ASCII format.
-    Your task is to parse this string and return a list of integers corresponding to how many beats does each note last.
+    """ Input to this function is a string representing musical notes in a special ASCII format.
+    Your task is to parse this string and return list of integers corresponding to how many beats does each
+    note last.
 
     Here is a legend:
     'o' - whole note, lasts four beats
@@ -13,6 +13,7 @@ def parse_music(music_string: str) -> List[int]:
 
     >>> parse_music('o o| .| o| o| .| .| .| .| o o')
     [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
+    
 
     Action Plan:
     1. Create a mapping of ASCII characters to beat counts:
@@ -32,23 +33,26 @@ def parse_music(music_string: str) -> List[int]:
         - Strings with characters not in the provided legend
     
     6. Optimization:
-        - Use a loop or generator to process each matched note rather than relying on list comprehensions or map operations for better efficiency in some scenarios
-    """
+        - Use a loop or generator to process each matched note rather than relying on list comprehensions or map operations for better efficiency in some scenarios"""
+
     # Mapping of musical note characters to their respective beat counts
-    note_to_beats = {'o': 4, 'o|': 2, '.|': 1}
-    
+    note_to_beats = {
+        'o': 4,
+        'o|': 2,
+        '.|': 1
+    }
+
     # Initialize an empty list to store the beat counts
-    beat_counts = []
-    
+    beats = []
+
     # Iterate over each character in the music string
     for char in music_string:
-        # Check if the character is a valid musical note
+        # If the character is a valid musical note, add its beat count to the list
         if char in note_to_beats:
-            # Append the corresponding beat count to the list
-            beat_counts.append(note_to_beats[char])
+            beats.append(note_to_beats[char])
+        # If the character is not a valid musical note, raise an error
         else:
-            # Handle the case where the character is not a valid musical note
             raise ValueError(f"Invalid musical note character: {char}")
-    
+
     # Return the list of beat counts
-    return beat_counts
+    return beats

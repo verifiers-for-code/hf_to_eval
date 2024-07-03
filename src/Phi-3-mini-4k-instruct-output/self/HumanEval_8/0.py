@@ -26,15 +26,15 @@ def sum_product(numbers: List[int]) -> Tuple[int, int]:
     5. Consider other edge cases (e.g., a list containing zeros or negative numbers)
     
     6. Discuss potential optimizations, such as using `itertools.accumulate()` for sum and reduce for product. However, avoid suggesting library functions that might obscure the logic being implemented."""
-
+    
     # Initialize sum and product variables
     sum_val = 0
     product_val = 1
-
-    # Iterate through the input list
+    
+    # Iterate through the input list with a for loop
     for num in numbers:
         sum_val += num
         product_val *= num
-
+    
     # Return a tuple (sum, product)
     return (sum_val, product_val)

@@ -1,35 +1,35 @@
 from fractions import Fraction
 
 def parse_fraction(fraction_str):
-    """
-    Helper function to parse a string fraction into numerator and denominator.
-    Handles edge cases like empty strings or incorrect format.
-    """
+    """Parse a fraction string into numerator and denominator."""
     if not fraction_str:
-        raise ValueError("Empty string input")
+        raise ValueError("Fraction string cannot be empty.")
+    
     parts = fraction_str.split('/')
     if len(parts) != 2:
-        raise ValueError("Invalid fraction format")
+        raise ValueError("Fraction string must be in the format <numerator>/<denominator>.")
+    
     numerator, denominator = parts
     if not numerator.isdigit() or not denominator.isdigit():
-        raise ValueError("Non-numeric values in fraction")
+        raise ValueError("Both numerator and denominator must be positive whole numbers.")
+    
     return int(numerator), int(denominator)
 
 def simplify(x, n):
     """
-    Function to simplify the expression x * n. Returns True if x * n evaluates to a whole number, False otherwise.
+    Simplify the expression x * n and return True if the result is a whole number, False otherwise.
     Both x and n are string representations of a fraction in the format <numerator>/<denominator>.
     """
     try:
-        numerator_x, denominator_x = parse_fraction(x)
-        numerator_n, denominator_n = parse_fraction(n)
+        num_x, den_x = parse_fraction(x)
+        num_n, den_n = parse_fraction(n)
     except ValueError as e:
-        print(f"Error: {e}")
+        print(f"Error parsing fractions: {e}")
         return False
-
-    # Perform the multiplication of the numerators and denominators separately
-    numerator_result = numerator_x * numerator_n
-    denominator_result = denominator_x * denominator_n
-
-    # Check if the result (numerator/denominator) is a whole number by verifying if the denominator is 1
-    return denominator_result == 1
+    
+    # Multiply numerators and denominators
+    result_num = num_x * num_n
+    result_den = den_x * den_n
+    
+    # Check if the result is a whole number
+    return result_den == 1

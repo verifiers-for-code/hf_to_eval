@@ -1,7 +1,6 @@
 def move_one_ball(arr):
-    """
-    We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].
-    The numbers in the array will be randomly ordered. Your task is to determine if
+    """We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The
+    numbers in the array will be randomly ordered. Your task is to determine if
     it is possible to get an array sorted in non-decreasing order by performing 
     the following operation on the given array:
         You are allowed to perform right shift operation any number of times.
@@ -19,7 +18,7 @@ def move_one_ball(arr):
     For Example:
     
     move_one_ball([3, 4, 5, 1, 2])==>True
-    Explanation: By performing 2 right shift operations, non-decreasing order can
+    Explanation: By performin 2 right shift operations, non-decreasing order can
                  be achieved for the given array.
     move_one_ball([3, 5, 4, 1, 2])==>False
     Explanation:It is not possible to get non-decreasing order for the given
@@ -48,18 +47,14 @@ def move_one_ball(arr):
     
     5. Account for efficiency by minimizing array comparisons and implementing efficient shift operations
     
-    6. Test the solution with provided examples and potential edge cases to ensure correctness
-    """
+    6. Test the solution with provided examples and potential edge cases to ensure correctness"""
+
     def right_shift(arr):
-        """
-        Helper function to perform a right shift operation on an array.
-        """
+        """Perform a right shift operation on the array and return the result."""
         return [arr[-1]] + arr[:-1]
 
     def can_sort_with_shifts(arr):
-        """
-        Helper function to check if the given array can be sorted with the right shift operation.
-        """
+        """Check if the array can be sorted with right shift operations."""
         sorted_arr = sorted(arr)
         while arr != sorted_arr:
             arr = right_shift(arr)
@@ -73,9 +68,8 @@ def move_one_ball(arr):
     if arr == sorted(arr):
         return True
 
-    # Evaluate the initial array state
+    # Evaluate initial array state
     if arr[0] > arr[-1]:
         return False
 
-    # Attempt to sort the array by shifting
     return can_sort_with_shifts(arr)

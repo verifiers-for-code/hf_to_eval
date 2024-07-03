@@ -7,7 +7,6 @@ def sum_squares(lst):
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     
-
     Action Plan:
     1. Set up list comprehension:
         - Use a list comprehension to iterate through the original list.
@@ -28,7 +27,7 @@ def sum_squares(lst):
     if not lst:
         return 0
     
-    # Apply the transformation based on the index
+    # Use list comprehension to apply the correct operation based on index
     transformed_list = [
         x**2 if i % 3 == 0 else
         x**3 if i % 4 == 0 and i % 3 != 0 else

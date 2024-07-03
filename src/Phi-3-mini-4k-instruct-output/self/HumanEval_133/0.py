@@ -30,11 +30,11 @@ def sum_squares(lst):
         - You can optimize by combining steps 2 and 3 into a single list comprehension statement.
     
     6. Verify with the provided test cases and additional edge cases."""
-    
+
     # Step 1: Round each number to the nearest integer
-    rounded_lst = [int(x) for x in lst]
-    
+    rounded_lst = [int(math.ceil(num)) for num in lst]
+
     # Step 2 & 3: Create a list of squared numbers and sum them
-    sum_of_squares = sum([x**2 for x in rounded_lst])
-    
+    sum_of_squares = sum([num**2 for num in rounded_lst])
+
     return sum_of_squares

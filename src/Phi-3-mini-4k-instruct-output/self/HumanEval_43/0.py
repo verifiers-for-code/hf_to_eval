@@ -13,29 +13,28 @@ def pairs_sum_to_zero(l):
     True
     >>> pairs_sum_to_zero([1])
     False
-    
-
-    Action Plan:
-    1. Check for a base case first:
-        a. If the length of the input list is less than 2, return False (no distinct pair possible)
-    
-    2. Create a set to hold numbers we've seen:
-        a. Iterate through the list and for each number:
-            i. Calculate its complement by negating the number (target = -num)
-            ii. Check if the complement is in the set
-            iii. If it is, return True (pair found)
-            iv. If not, add the current number to the set
-    
-    3. After the loop ends, return False if no pair is found"""
-
+    """
+    # Action Plan
+    # 1. Check for a base case first:
+    #    a. If the length of the input list is less than 2, return False (no distinct pair possible)
     if len(l) < 2:
         return False
-
+    
+    # 2. Create a set to hold numbers we've seen:
     seen = set()
+    
+    # Iterate through the list and for each number:
     for num in l:
-        complement = -num
-        if complement in seen:
+        # Calculate its complement by negating the number (target = -num)
+        target = -num
+        
+        # Check if the complement is in the set
+        if target in seen:
+            # If it is, return True (pair found)
             return True
+        
+        # If not, add the current number to the set
         seen.add(num)
-
+    
+    # After the loop ends, return False if no pair is found
     return False

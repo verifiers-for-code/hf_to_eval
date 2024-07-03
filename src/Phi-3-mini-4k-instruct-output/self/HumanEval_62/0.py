@@ -26,9 +26,10 @@ def derivative(xs: list):
 
     derivative_coeffs = []
 
+    if len(xs) < 2:
+        return derivative_coeffs
+
     for i, coeff in enumerate(xs):
-        if i == 0:
-            continue
         derivative_coeffs.append(coeff * (i + 1))
 
     return derivative_coeffs

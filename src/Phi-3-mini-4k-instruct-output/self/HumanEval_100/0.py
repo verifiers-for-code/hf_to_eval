@@ -11,53 +11,38 @@ def make_a_pile(n):
     Examples:
     >>> make_a_pile(3)
     [3, 5, 7]
-    
-
-    Action Plan:
-    1. Identify the base case:
-        - When n equals 1, return the list containing only n
-    
-    2. Create a loop that iterates from the second level to n levels:
-        a. Determine if n is odd or even
-        b. Update the number of stones in the current level based on the parity of n:
-            - If n is odd, use the next odd number
-            - If n is even, use the next even number
-        c. Append the number of stones to the list representing the pile levels
-    
-    3. Iteration logic:
-        a. Starting from level 1, initialize the list and the current stone count
-        b. For each level, check if the current number of stones follows the odd/even rule and add it to the list
-        c. Adjust the current stone count to the next odd or even number accordingly
-    
-    4. Edge cases:
-        a. Handle the case where n equals 1, as it is a special scenario
-        b. Consider possible data type issues and handle them gracefully
-    
-    5. Optimization:
-        - Keep track of the current odd or even number, avoiding redundant calculations
-    
-    6. Test the function:
-        - Verify against the given examples and test additional edge cases, such as very large values of n or negative numbers"""
-    
-    # Base case
+    """
+    # Step 1: Identify the base case
     if n == 1:
-        return [n]
-    
-    # Initialize the list and the current stone count
+        return [1]
+
+    # Step 2: Create a loop that iterates from the second level to n levels
     pile = [n]
     current_stones = n
-    
-    # Iterate from the second level to n levels
     for i in range(1, n):
-        # Determine if n is odd or even
-        if n % 2 == 0:
+        # Step 3: Iteration logic
+        if current_stones % 2 == 0:
             # If n is even, use the next even number
             current_stones += 2
         else:
             # If n is odd, use the next odd number
             current_stones += 2
-        
-        # Append the number of stones to the list representing the pile levels
         pile.append(current_stones)
-    
+
+    # Step 4: Edge cases
+    # Handle negative numbers and non-integer inputs
+    if not isinstance(n, int) or n < 1:
+        raise ValueError("Input must be a positive integer")
+
+    # Step 5: Optimization
+    # Keep track of the current odd or even number, avoiding redundant calculations
+    # This step is already optimized in the current implementation
+
+    # Step 6: Test the function
+    # Verify against the given examples and test additional edge cases
+    assert make_a_pile(3) == [3, 5, 7], "Test case failed: make_a_pile(3)"
+    assert make_a_pile(1) == [1], "Test case failed: make_a_pile(1)"
+    assert make_a_pile(0) == [], "Test case failed: make_a_pile(0)"
+    print("All test cases passed.")
+
     return pile

@@ -1,4 +1,5 @@
 def max_fill(grid, capacity):
+    import math
     """
     You are given a rectangular grid of wells. Each row represents a single well,
     and each 1 in a row represents a single unit of water.
@@ -46,8 +47,6 @@ def max_fill(grid, capacity):
         a. Divide the total water volume by the bucket capacity and round up (because you can't have a fraction of a bucket)
     
     4. Return the result as the number of buckets required"""
-
-    import math
 
     # Step 1: Calculate total water volume
     sum_of_water = 0

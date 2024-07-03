@@ -1,6 +1,5 @@
 def numerical_letter_grade(grades):
-    """
-    It is the last week of the semester and the teacher has to give the grades
+    """It is the last week of the semester and the teacher has to give the grades
     to students. The teacher has been making her own algorithm for grading.
     The only problem is, she has lost the code she used for grading.
     She has given you a list of GPAs for some students and you have to write 
@@ -20,6 +19,7 @@ def numerical_letter_grade(grades):
             > 0.0                D-
               0.0                E
     
+
     Example:
     grade_equation([4.0, 3, 1.7, 2, 3.5]) ==> ['A+', 'B', 'C-', 'C', 'A-']
     

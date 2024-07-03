@@ -1,7 +1,13 @@
 def how_many_times(string: str, substring: str) -> int:
-    """
-    Find how many times a given substring can be found in the original string. Count overlaping cases.
+    """ Find how many times a given substring can be found in the original string. Count overlaping cases.
+    >>> how_many_times('', 'a')
+    0
+    >>> how_many_times('aaa', 'a')
+    3
+    >>> how_many_times('aaaa', 'aa')
+    3
     
+
     Action Plan:
     1. Start with edge cases:
         - If the original string is empty, return 0
@@ -27,7 +33,7 @@ def how_many_times(string: str, substring: str) -> int:
     if not string:
         return 0
     
-    # Edge case: substring is longer than the original string
+    # Edge case: substring longer than original string
     if len(substring) > len(string):
         return 0
     
@@ -42,8 +48,8 @@ def how_many_times(string: str, substring: str) -> int:
         # Check for the substring
         if string[start_index:start_index + len(substring)] == substring:
             count += 1
-            start_index += 1  # Move start index for the next search
+            start_index += 1
         else:
-            start_index += 1  # Move start index for the next search
+            start_index += 1
     
     return count

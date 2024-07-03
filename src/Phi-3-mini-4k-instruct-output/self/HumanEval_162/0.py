@@ -22,9 +22,9 @@ def string_to_md5(text):
     
     4. Return the result:
         - Return the hexadecimal string representing the MD5 hash of the input string"""
-    
-    if text == "":
+
+    if not text:
         return None
-    
-    md5_hash = hashlib.md5(text.encode())
-    return md5_hash.hexdigest()
+
+    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
+    return md5_hash

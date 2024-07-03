@@ -31,20 +31,32 @@ def minSubArraySum(nums):
     
     8. Validate the solution:
         - Test with multiple examples and edge cases"""
+    
+    # Edge case: empty array
     if not nums:
         return 0
+    
+    # Edge case: array with a single element
     if len(nums) == 1:
         return nums[0]
     
-    min_sum = float('inf')
-    current_sum = 0
+    # Initialize pointers and variables
     start = 0
+    end = 0
+    current_sum = nums[0]
+    min_sum = nums[0]
     
-    for end in range(len(nums)):
+    # Iterate through the array
+    while end < len(nums):
+        # Slide the end pointer to expand the window
         current_sum += nums[end]
         
-        while current_sum >= nums[start]:
-            min_sum = min(min_sum, current_sum)
+        # Update the minimum sum found so far
+        if current_sum < min_sum:
+            min_sum = current_sum
+        
+        # Slide the start pointer to reduce the window
+        while current_sum >= min_sum and start < end:
             current_sum -= nums[start]
             start += 1
     

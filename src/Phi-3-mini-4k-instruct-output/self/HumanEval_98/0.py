@@ -24,22 +24,11 @@ def count_upper(s):
         - Handle strings with odd length (none of the last character will be counted)
     
     7. Testing:
-        - Use the provided examples to validate the function's correctness and robustness."""
-    
-    # Step 1: Create a list of uppercase vowels
-    uppercase_vowels = ['A', 'E', 'I', 'O', 'U']
-    
-    # Step 2: Initialize a counter
+        - Use the provided examples to validate the function's correctness and robustness.
+    """
+    vowels = ['A', 'E', 'I', 'O', 'U']
     count = 0
-    
-    # Step 3: Iterate over the string using a loop with a step of 2
     for i in range(0, len(s), 2):
-        # Step 3a: Check if the index is even
-        if i % 2 == 0:
-            # Step 3b: Check if the character at the current index is in the list of uppercase vowels
-            if s[i] in uppercase_vowels:
-                # Step 4: Increment the counter
-                count += 1
-    
-    # Step 5: Return the counter
+        if s[i] in vowels:
+            count += 1
     return count

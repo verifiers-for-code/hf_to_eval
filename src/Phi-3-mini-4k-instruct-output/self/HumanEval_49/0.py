@@ -1,7 +1,17 @@
 def modp(n: int, p: int):
-    """
-    Return 2^n modulo p (be aware of numerics).
+    """Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
     
+
     Action Plan:
     1. Input validation:
         a. Check if both n and p are integers
@@ -25,8 +35,8 @@ def modp(n: int, p: int):
         b. Negative values of n and p should be properly dealt with, potentially raising an exception or value error
     
     6. Testing:
-        a. Verify all given test cases with additional edge cases for a comprehensive check
-    """
+        a. Verify all given test cases with additional edge cases for a comprehensive check"""
+
     # Input validation
     if not isinstance(n, int) or not isinstance(p, int):
         raise ValueError("Both n and p must be integers.")
@@ -34,18 +44,18 @@ def modp(n: int, p: int):
         raise ValueError("Both n and p must be non-negative.")
     if p <= 1:
         raise ValueError("p must be greater than 1.")
-    
+
     # Special case handling
     if n == 0:
         return 1
     if p == 1:
         return n
-    
+
     # Applying modular exponentiation algorithm
     result = 1
     base = 2
     for _ in range(n):
         result = (result * base) % p
         base = (base * base) % p
-    
+
     return result

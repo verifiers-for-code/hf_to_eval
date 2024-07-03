@@ -11,7 +11,6 @@ def exchange(lst1, lst2):
     exchange([1, 2, 3, 4], [1, 5, 3, 4]) => "NO"
     It is assumed that the input lists will be non-empty.
     
-
     Action Plan:
     1. Define a helper function to determine if a number is even:
         a. Check if the number is divisible by 2

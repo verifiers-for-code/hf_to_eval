@@ -1,7 +1,11 @@
 def max_element(l: list):
-    """
-    Return maximum element in the list.
+    """Return maximum element in the list.
+    >>> max_element([1, 2, 3])
+    3
+    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    123
     
+
     Action Plan:
     1. Start with the function definition and its docstring, specifying the expected input and output.
     2. Initialize a variable to store the maximum element. Set it to the first element of the list by default.
@@ -12,8 +16,8 @@ def max_element(l: list):
     6. Consider handling edge cases such as an empty list.
     7. Use Python's built-in max() function for an alternative, simpler approach.
     
-    8. Test the function with the provided examples and additional cases to ensure correctness.
-    """
+    8. Test the function with the provided examples and additional cases to ensure correctness."""
+    
     if not l:
         return None
     

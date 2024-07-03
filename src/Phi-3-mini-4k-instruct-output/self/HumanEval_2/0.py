@@ -1,12 +1,12 @@
 def truncate_number(number: float) -> float:
-    """
-    Given a positive floating point number, it can be decomposed into
-    an integer part (largest integer smaller than given number) and decimals
+    """ Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
     (leftover part always smaller than 1).
 
     Return the decimal part of the number.
     >>> truncate_number(3.5)
     0.5
+    
 
     Action Plan:
     1. Validate input:
@@ -24,8 +24,8 @@ def truncate_number(number: float) -> float:
     5. Handle rounding and precision considerations:
         a. Consider float accuracy limitations
     
-    6. Test the function with the given test cases and additional inputs to validate functionality
-    """
+    6. Test the function with the given test cases and additional inputs to validate functionality"""
+
     # Validate input
     if not isinstance(number, float) or number <= 0:
         raise ValueError("Input must be a positive floating-point number")

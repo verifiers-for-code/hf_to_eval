@@ -16,36 +16,20 @@ def is_prime(n):
     False
     >>> is_prime(1)
     False
-    
+    """
+    # Step 1: Identify the characteristics of a prime number
+    # Prime numbers are greater than 1
+    # A prime number has no positive divisors other than 1 and itself
 
-    Action Plan:
-    1. Identify the characteristics of a prime number:
-        - Prime numbers are greater than 1
-        - A prime number has no positive divisors other than 1 and itself
-    
-    2. Write a function to check if a given number 'n' is prime:
-        a. Return False for n <= 1
-        b. Check if 'n' is divisible by any number from 2 to the square root of 'n'
-            - Use the fact that if 'n' has a factor greater than its square root, it must also have a smaller factor
-    
-    3. For the main logic:
-        a. Start the loop from 2 and iterate up to (but not including) the square root of 'n'
-        b. Use an efficient way to determine divisibility, such as the modulo operation
-        c. Count and return the number of times 'n' is divisible (which should be 0 for prime numbers)
-    
-    4. Consider edge cases:
-        a. Negative numbers and 0, which are not prime
-        b. Small numbers where primality is easily checked by hand or a simple algorithm
-    
-    5. Optimization:
-        a. Implement early exit conditions for small values and non-prime numbers to reduce unnecessary checks
-    
-    6. Testing:
-        a. Verify the function with the given test cases and additional edge cases to ensure reliability and correctness"""
-
+    # Step 2: Write a function to check if a given number 'n' is prime
     if n <= 1:
         return False
     for i in range(2, int(math.sqrt(n)) + 1):
         if n % i == 0:
             return False
     return True
+
+# Step 3: For the main logic
+# Start the loop from 2 and iterate up to (but not including) the square root of 'n'
+# Use an efficient way to determine divisibility, such as the modulo operation
+# Count and return the number of times 'n' is divisible (which should be 0 for prime numbers)

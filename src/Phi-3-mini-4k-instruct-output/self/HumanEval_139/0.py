@@ -1,6 +1,5 @@
 def special_factorial(n):
-    """
-    The Brazilian factorial is defined as:
+    """The Brazilian factorial is defined as:
     brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!
     where n > 0
 
@@ -10,6 +9,7 @@ def special_factorial(n):
 
     The function will receive an integer as input and should return the special
     factorial of this integer.
+    
 
     Action Plan:
     1. Define a recursive helper function to calculate the factorial of a single number:
@@ -29,8 +29,8 @@ def special_factorial(n):
     
     5. Validate edge cases:
         - Test the function with input values of 1, as factorial of 1 should equal 1 regardless of the iterations
-        - Ensure negative input values result in an error or an appropriate message, as factorial is undefined for negative numbers
-    """
+        - Ensure negative input values result in an error or an appropriate message, as factorial is undefined for negative numbers"""
+
     def factorial(n):
         if n == 0:
             return 1

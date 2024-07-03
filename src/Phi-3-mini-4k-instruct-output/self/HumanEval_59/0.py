@@ -1,6 +1,5 @@
 def largest_prime_factor(n: int):
-    """
-    Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    """Return the largest prime factor of n. Assume n > 1 and is not a prime.
     >>> largest_prime_factor(13195)
     29
     >>> largest_prime_factor(2048)
@@ -23,8 +22,8 @@ def largest_prime_factor(n: int):
         - Validate if the resulting prime factor is actually the largest
     
     5. Return the largest prime factor:
-        - After exiting the loop, return the last checked prime factor
-    """
+        - After exiting the loop, return the last checked prime factor"""
+    
     # Step 1: Set initial prime factor
     prime_factor = 2
     
@@ -34,10 +33,7 @@ def largest_prime_factor(n: int):
         if n % prime_factor == 0:
             n //= prime_factor
         else:
-            # Move to the next prime
             prime_factor += 1
-            while not is_prime(prime_factor):
-                prime_factor += 1
     
     # Step 4: Edge cases and validation
     # If n is still greater than 1, it means it is a prime number itself
@@ -46,12 +42,3 @@ def largest_prime_factor(n: int):
     
     # Step 5: Return the largest prime factor
     return prime_factor
-
-def is_prime(n: int) -> bool:
-    """Check if a number is prime."""
-    if n <= 1:
-        return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
-    return True

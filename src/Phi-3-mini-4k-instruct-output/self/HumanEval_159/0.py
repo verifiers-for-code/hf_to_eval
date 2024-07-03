@@ -46,19 +46,15 @@ def eat(number, need, remaining):
     
     4. Return the final result in an array format [eaten_total, eaten_remaining]"""
     
-    # Step 1: Initialize the sum of eaten carrots
-    eaten_total = number
+    # Check for edge cases
+    if remaining <= 0 or need <= 0:
+        return [number, 0]
     
-    # Step 2: Check if there are enough remaining carrots
-    if remaining < need:
-        # If not, return the total eaten carrots plus the remaining carrots, and 0 for remaining
-        return [eaten_total + remaining, 0]
-    else:
-        # If there are enough remaining carrots, update the eaten_total
-        eaten_total += need
-        
-        # Step 3: Calculate the remaining carrots after eating
-        eaten_remaining = need - (remaining - need)
-        
-        # Step 4: Return the final result
-        return [eaten_total, eaten_remaining]
+    # Calculate the total number of eaten carrots
+    eaten_total = number + remaining
+    
+    # Calculate the remaining carrots after eating
+    eaten_remaining = need - (eaten_total - number)
+    
+    # Return the result in an array format
+    return [eaten_total, eaten_remaining]

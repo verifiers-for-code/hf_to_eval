@@ -28,26 +28,28 @@ def fix_spaces(text):
     
     7. Optimize by running the consecutive spaces check only once after the space replacements."""
     
-    # Step 1: Initialize a variable to keep track of the count of consecutive spaces.
+    # Edge case: empty string
+    if not text:
+        return text
+    
+    # Replace all spaces with underscores
+    text = text.replace(' ', '_')
+    
+    # Initialize a variable to keep track of the count of consecutive spaces
     consecutive_spaces = 0
     
-    # Step 2: Iterate through the text with a loop.
-    result = []
-    for char in text:
-        # Step 3: Check if the current character is a space and if the previous character was also a space.
-        if char == ' ':
-            if result and result[-1] == ' ':
-                consecutive_spaces += 1
-            else:
-                consecutive_spaces = 1
+    # Iterate through the text with a loop
+    for i in range(len(text)):
+        # Check if the current character is a space and if the previous character was also a space
+        if text[i] == '_' and i > 0 and text[i-1] == '_':
+            consecutive_spaces += 1
         else:
             consecutive_spaces = 0
         
-        # Step 4: After the loop, check the count.
+        # Check the count after the loop
         if consecutive_spaces > 2:
-            result.append('-')
-        else:
-            result.append('_')
+            # Replace all consecutive spaces with '-'
+            text = text[:i-consecutive_spaces+1] + '-' + text[i+consecutive_spaces:]
+            break
     
-    # Step 5: Return the modified text
-    return ''.join(result)
+    return text

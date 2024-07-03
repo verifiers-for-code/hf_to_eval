@@ -33,6 +33,7 @@ def encrypt(s):
             ascii_offset = 65 if letter.isupper() else 97
             return chr((ord(letter) - ascii_offset + shift) % 26 + ascii_offset)
         else:
+            # Non-letter characters are not encrypted
             return letter
     
     encrypted_string = ''.join(rotate_letter(char) for char in s)

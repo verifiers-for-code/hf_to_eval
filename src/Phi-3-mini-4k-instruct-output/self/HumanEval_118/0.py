@@ -36,22 +36,24 @@ def get_closest_vowel(word):
     
     6. Testing:
         a. Verify with the given examples and additional test cases"""
-    
+
     vowels = "aeiouAEIOU"
+    consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
     word_length = len(word)
-    start_vowel = False
-    end_vowel = False
-    closest_vowel = ""
-    
+    start_vowel_index = -1
+    end_vowel_index = -1
+    found_vowel = False
+
+    # Iterate through the word in reverse order
     for i in range(word_length - 1, -1, -1):
         if word[i] in vowels:
-            if not start_vowel:
-                start_vowel = True
-            elif not end_vowel:
-                end_vowel = True
-                break
-            else:
-                closest_vowel = word[i]
-                break
-    
-    return closest_vowel
+            if not found_vowel:
+                start_vowel_index = i
+                found_vowel = True
+            end_vowel_index = i
+        elif found_vowel and word[i] in consonants:
+            # Found a consonant after a vowel, so we can return the vowel
+            return word[start_vowel_index + 1:end_vowel_index]
+
+    # If no vowel was found between consonants, return an empty string
+    return ""

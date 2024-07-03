@@ -39,16 +39,8 @@ def maximum(arr, k):
     
     5. Note the importance of optimizing for the best time complexity possible given the problem's constraints
     """
-    # Check if the input array is valid
-    if not arr or not isinstance(arr, list) or not all(isinstance(x, int) for x in arr):
-        raise ValueError("Input must be a list of integers")
-    
-    # Check if 'k' is within the valid range
-    if not isinstance(k, int) or k < 0 or k > len(arr):
-        raise ValueError("'k' must be a non-negative integer less than or equal to the length of the array")
-    
-    # Sort the array in descending order
+    # Step 1: Sort the input array in descending order
     arr.sort(reverse=True)
     
-    # Return the first 'k' elements from the sorted array
+    # Step 2: Return the first 'k' elements from the sorted array
     return arr[:k]

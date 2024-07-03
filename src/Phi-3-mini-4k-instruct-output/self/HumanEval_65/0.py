@@ -1,6 +1,5 @@
 def circular_shift(x, shift):
-    """
-    Circular shift the digits of the integer x, shift the digits right by shift
+    """Circular shift the digits of the integer x, shift the digits right by shift
     and return the result as a string.
     If shift > number of digits, return digits reversed.
     >>> circular_shift(12, 1)
@@ -8,6 +7,7 @@ def circular_shift(x, shift):
     >>> circular_shift(12, 2)
     "12"
     
+
     Action Plan:
     1. Normalize the shift value:
         - Adjust shift to be within the bounds of the number of digits (use modulus operator)
@@ -24,24 +24,23 @@ def circular_shift(x, shift):
         - Shift value larger than the number of digits: Reverse the entire string and return
         - Empty or single-digit integer: Return the original number as a string
     
-    5. Reassemble the string and return the result
-    """
+    5. Reassemble the string and return the result"""
+
     # Normalize the shift value
     shift = shift % len(str(abs(x)))
-    
+
     # Convert the integer x into a string representation
     x_str = str(x)
-    
-    # Manipulate the string
-    if shift == 0:
+
+    # Edge case: empty or single-digit integer
+    if len(x_str) <= 1:
         return x_str
-    else:
-        shifted_str = x_str[-shift:] + x_str[:-shift]
-    
-    # Edge cases
-    if shift > len(x_str):
+
+    # Edge case: shift value larger than the number of digits
+    if shift >= len(x_str):
         return x_str[::-1]
-    elif len(x_str) == 1:
-        return x_str
-    
+
+    # Manipulate the string
+    shifted_str = x_str[-shift:] + x_str[:-shift]
+
     return shifted_str

@@ -10,12 +10,22 @@ def vowels_count(s):
     >>> vowels_count("ACEDY")
     3
     """
+    # Define a list of vowels, including 'y' as a vowel at the end
     vowels = ['a', 'e', 'i', 'o', 'u']
-    count = 0
-    last_char = s[-1] if s else ''
 
-    for char in s:
-        if char in vowels or (char == 'y' and last_char == 'y'):
-            count += 1
+    # Initialize a counter for vowels
+    vowel_count = 0
 
-    return count
+    # Iterate through the string
+    for i, char in enumerate(s):
+        # Check if the character is a vowel
+        if char in vowels:
+            # Increment the counter
+            vowel_count += 1
+        # Special handling for 'y' at the end
+        elif char == 'y' and i == len(s) - 1:
+            # Increment the counter
+            vowel_count += 1
+
+    # Return the vowel count
+    return vowel_count

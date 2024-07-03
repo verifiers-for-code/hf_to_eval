@@ -34,9 +34,8 @@ def next_smallest(lst):
     for i in range(len(sorted_lst)):
         if i == 0:
             continue
-        if second_smallest is None:
+        elif i == 1:
             second_smallest = sorted_lst[i][1]
-        else:
             break
     
     # Step 3: Return the second smallest element or None if it does not exist

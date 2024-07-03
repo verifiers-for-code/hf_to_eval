@@ -39,6 +39,6 @@ def generate_integers(a, b):
     even_digits = [digit for num in numbers for digit in extract_even_digits(num)]
 
     # Remove odd digits and sort the remaining list
-    even_digits_sorted = sorted(set(even_digits))
+    even_digits = sorted(set(even_digits))
 
-    return even_digits_sorted
+    return even_digits

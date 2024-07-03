@@ -39,10 +39,10 @@ def even_odd_count(num):
     # Iterate through each character in the string
     for digit in num_str:
         # Convert each character back to an integer for evaluation
-        digit_int = int(digit)
+        digit = int(digit)
 
         # Evaluate and increment the appropriate count
-        if digit_int % 2 == 0:
+        if digit % 2 == 0:
             even_count += 1
         else:
             odd_count += 1

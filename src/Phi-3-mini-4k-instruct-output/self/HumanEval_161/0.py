@@ -1,6 +1,5 @@
 def solve(s):
-    """
-    You are given a string s.
+    """You are given a string s.
     if s[i] is a letter, reverse its case from lower to upper or vise versa, 
     otherwise keep it as it is.
     If the string contains no letters, reverse the string.
@@ -10,6 +9,7 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     
+
     Action Plan:
     1. Iterate through each character in the input string using a loop
     
@@ -21,19 +21,22 @@ def solve(s):
     
     3. If the loop concludes without finding any letter, reverse the input string
     
-    4. Return the resulting string
-    """
+    4. Return the resulting string"""
+    
     result = ""
     has_letter = False
+    
     for char in s:
         if char.isalpha():
-            has_letter = True
             if char.islower():
                 result += char.upper()
             else:
                 result += char.lower()
+            has_letter = True
         else:
             result += char
+    
     if not has_letter:
-        result = result[::-1]
+        result = s[::-1]
+    
     return result

@@ -4,6 +4,12 @@ def is_bored(S):
     of boredoms. A boredom is a sentence that starts with the word "I".
     Sentences are delimited by '.', '?' or '!'.
     
+    For example:
+    >>> is_bored("Hello world")
+    0
+    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
+    1
+    
     Action Plan:
     1. Split the string into a list of sentences, taking into account punctuation marks that delimit sentences (e.g., '.', '?', '!')
     2. Iterate through each sentence
@@ -27,11 +33,11 @@ def is_bored(S):
     # Iterate through each sentence
     for sentence in sentences:
         # Split the sentence into individual words
-        words = sentence.split()
+        words = sentence.strip().split()
         
         # Check if the first word in the sentence is "I"
         if words and words[0].lower() == "i":
-            # Increment boredom count
+            # Increment the boredom count
             boredom_count += 1
     
     # Return the boredom count

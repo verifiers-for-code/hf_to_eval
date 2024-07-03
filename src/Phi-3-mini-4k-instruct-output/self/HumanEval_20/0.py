@@ -52,5 +52,5 @@ def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
                 smallest_distance = current_distance
                 closest_pair = (numbers[i], numbers[j])
 
-    # Return the closest pair
-    return closest_pair
+    # Return the closest pair (ensure order from smaller to larger)
+    return tuple(sorted(closest_pair))

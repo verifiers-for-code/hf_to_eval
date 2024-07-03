@@ -7,9 +7,9 @@ def fruit_distribution(s, n):
     in the basket return the number of the mango fruits in the basket.
     for example:
     fruit_distribution("5 apples and 6 oranges", 19) -> 19 - 5 - 6 = 8
-    fruit_distribution("0 apples and 1 oranges",3) -> 3 - 0 - 1 = 2
+    fruit_distribution("0 apples and 1 oranges", 3) -> 3 - 0 - 1 = 2
     fruit_distribution("2 apples and 3 oranges", 100) -> 100 - 2 - 3 = 95
-    fruit_distribution("100 apples and 1 oranges",120) -> 120 - 100 - 1 = 19
+    fruit_distribution("100 apples and 1 oranges", 120) -> 120 - 100 - 1 = 19
     
 
     Action Plan:
@@ -31,33 +31,32 @@ def fruit_distribution(s, n):
         - Ensure single responsibility for each function (e.g., one function for parsing, one for conversion).
     
     6. Return the calculated number of mangoes."""
-    
+
     # Step 1: Parse the input string to extract the quantities of apples and oranges
     parts = s.split(" and ")
     if len(parts) != 2:
         raise ValueError("Invalid input string format")
-    
+
     apple_str, orange_str = parts
-    apple_str = apple_str.split()[0]
-    orange_str = orange_str.split()[0]
-    
+    apple_str = apple_str.split()[-1]
+    orange_str = orange_str.split()[-1]
+
     # Step 2: Convert the extracted string values to integers, with error checking
     try:
         apple_count = int(apple_str)
         orange_count = int(orange_str)
     except ValueError:
         raise ValueError("Invalid input string format")
-    
+
     # Step 3: Calculate the number of mangoes
     mango_count = n - apple_count - orange_count
-    
+
     # Step 4: Edge cases
     if mango_count < 0:
         raise ValueError("Total fruit count is less than the sum of apples and oranges")
-    
+
     # Step 5: Function structure
-    # Separate parsing and conversion logic from calculation logic
-    # Ensure single responsibility for each function
-    
+    # (Already implemented in the above steps)
+
     # Step 6: Return the calculated number of mangoes
     return mango_count

@@ -10,7 +10,6 @@ def check_dict_case(dict):
     check_dict_case({"Name":"John", "Age":"36", "City":"Houston"}) should return False.
     check_dict_case({"STATE":"NC", "ZIP":"12345" }) should return True.
     
-
     Action Plan:
     1. Handle an empty dictionary by returning False
     
@@ -37,21 +36,33 @@ def check_dict_case(dict):
     
     This plan takes into account all possible variations in key types and cases, ensuring robustness against edge cases."""
     
+    # Step 1: Handle an empty dictionary by returning False
     if not dict:
         return False
     
+    # Step 2: Initialize a variable `all_cases` to track the case of keys. Set it to True initially
     all_cases = True
-    first_case = None
     
+    # Step 3: Iterate over each item in the dictionary using `dict.items()`
     for key, value in dict.items():
-        if not isinstance(key, str):
-            return False
-        
-        if first_case is None:
-            first_case = key.islower()
-        else:
-            if (key.islower() != first_case) or (key.isupper() != first_case):
+        # Step 4: Determine the case of the key
+        if isinstance(key, str):
+            if key.islower() and not all_cases:
+                return False
+            elif key.isupper() and not all_cases:
+                return False
+            elif not all_cases:
                 all_cases = False
-                break
+        else:
+            # Step 5: Handle different key types
+            return False
     
+    # Step 7: At the end of iteration
     return all_cases
+
+# Example usage:
+print(check_dict_case({"a":"apple", "b":"banana"}))  # Should return True
+print(check_dict_case({"a":"apple", "A":"banana", "B":"banana"}))  # Should return False
+print(check_dict_case({"a":"apple", 8:"banana", "a":"apple"}))  # Should return False
+print(check_dict_case({"Name":"John", "Age":"36", "City":"Houston"}))  # Should return False
+print(check_dict_case({"STATE":"NC", "ZIP":"12345"}))  # Should return True
