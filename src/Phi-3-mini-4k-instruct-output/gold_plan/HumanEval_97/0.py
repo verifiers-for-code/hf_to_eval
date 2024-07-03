@@ -35,6 +35,7 @@ def multiply(a, b):
     unit_digit_b = abs(b) % 10
 
     # Multiply the extracted unit digits
-    result = unit_digit_a * unit_digit_b
+    product = unit_digit_a * unit_digit_b
 
-    return result
+    # Return the result
+    return product

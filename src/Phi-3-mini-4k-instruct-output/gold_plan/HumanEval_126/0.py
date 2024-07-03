@@ -13,22 +13,37 @@ def is_sorted(lst):
     is_sorted([1, 3, 2, 4, 5, 6, 7]) ➞ False
     is_sorted([1, 2, 2, 3, 3, 4]) ➞ True
     is_sorted([1, 2, 2, 2, 3, 4]) ➞ False
+
+    Action Plan:
+    1. Handle edge cases:
+       - If the list is empty or has only one element, return True.
+
+    2. Check for duplicates:
+       - Create a dictionary to count occurrences of each number.
+       - Iterate through the list, updating the count for each number.
+       - If any number appears more than twice, return False.
+
+    3. Check if the list is sorted:
+       - Iterate through the list starting from the second element.
+       - Compare each element with the previous one.
+       - If any element is smaller than the previous one, return False.
+
+    4. If all checks pass, return True.
     '''
-    # Handle edge cases
     if len(lst) <= 1:
         return True
 
-    # Check for duplicates
     num_counts = {}
     for num in lst:
         if num in num_counts:
             num_counts[num] += 1
-            if num_counts[num] > 2:
-                return False
         else:
             num_counts[num] = 1
 
-    # Check if the list is sorted
+    for num, count in num_counts.items():
+        if count > 2:
+            return False
+
     for i in range(1, len(lst)):
         if lst[i] < lst[i-1]:
             return False

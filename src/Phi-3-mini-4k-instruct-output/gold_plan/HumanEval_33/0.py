@@ -6,19 +6,21 @@ def sort_third(l: list):
     [1, 2, 3]
     >>> sort_third([5, 6, 3, 4, 8, 9, 2])
     [2, 6, 3, 4, 8, 9, 5]
+
+    Action Plan:
+    1. Create a copy of the input list 'l' to avoid modifying the original list.
+    2. Extract elements at indices divisible by 3 (0, 3, 6, ...) into a separate list.
+    3. Sort the extracted elements.
+    4. Replace the elements at indices divisible by 3 in the copied list with the sorted elements.
+    5. Return the modified list.
+
+    Hints:
+    - Use list slicing to access elements at indices divisible by 3: l[::3]
+    - The sorted() function can be used to sort the extracted elements
+    - List assignment with slicing can be used to replace elements at specific indices
     """
-    # Step 1: Create a copy of the input list 'l'
     l_copy = l[:]
-
-    # Step 2: Extract elements at indices divisible by 3
-    elements_at_divisible_by_three = l_copy[::3]
-
-    # Step 3: Sort the extracted elements
-    elements_at_divisible_by_three.sort()
-
-    # Step 4: Replace the elements at indices divisible by 3 in the copied list
-    for i, element in enumerate(elements_at_divisible_by_three):
-        l_copy[i*3] = element
-
-    # Step 5: Return the modified list
+    elements_at_indices_divisible_by_3 = l_copy[::3]
+    sorted_elements = sorted(elements_at_indices_divisible_by_3)
+    l_copy[::3] = sorted_elements
     return l_copy

@@ -21,16 +21,12 @@ def strange_sort_list(lst):
     '''
     result = []
     switch = True
-
     while lst:
         if switch:
             min_val = min(lst)
-            result.append(min_val)
-            lst.remove(min_val)
         else:
             max_val = max(lst)
-            result.append(max_val)
-            lst.remove(max_val)
+        result.append(min_val if switch else max_val)
+        lst.remove(min_val if switch else max_val)
         switch = not switch
-
     return result

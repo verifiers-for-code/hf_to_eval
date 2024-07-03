@@ -17,9 +17,9 @@ def count_upper(s):
     4. If the character is an uppercase vowel, increment the counter.
     5. After the loop ends, return the final count.
     """
-    upper_vowels = 'AEIOU'
+    vowels = 'AEIOU'
     count = 0
     for i in range(0, len(s), 2):
-        if s[i] in upper_vowels:
+        if s[i] in vowels:
             count += 1
     return count

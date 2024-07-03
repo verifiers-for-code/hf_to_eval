@@ -17,4 +17,5 @@ def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
     Hint: Consider using a list comprehension to make the code more concise.
     Remember to use the 'startswith()' method to check if a string begins with the prefix.
     """
-    return [string for string in strings if string.startswith(prefix)]
+    filtered_strings = [string for string in strings if string.startswith(prefix)]
+    return filtered_strings

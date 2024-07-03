@@ -25,11 +25,11 @@ def correct_bracketing(brackets: str):
        - If not, return False (some opening brackets were not closed)
     """
     depth = 0
-    for bracket in brackets:
-        if bracket == "<":
+    for char in brackets:
+        if char == '<':
             depth += 1
-        elif bracket == ">":
+        elif char == '>':
             depth -= 1
-        if depth < 0:
-            return False
+            if depth < 0:
+                return False
     return depth == 0

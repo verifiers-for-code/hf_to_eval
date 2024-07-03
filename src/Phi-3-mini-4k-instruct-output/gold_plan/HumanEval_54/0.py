@@ -1,7 +1,7 @@
 def same_chars(s0: str, s1: str):
     """
     Check if two words have the same characters.
-
+    
     Action Plan:
     1. Convert both input strings into sets of characters.
        - This will automatically remove duplicates and ignore order.
@@ -24,6 +24,4 @@ def same_chars(s0: str, s1: str):
     >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
     False
     """
-    set_s0 = set(s0)
-    set_s1 = set(s1)
-    return set_s0 == set_s1
+    return set(s0) == set(s1)

@@ -32,17 +32,16 @@ def will_it_fly(q, w):
 
     Remember to handle edge cases, such as empty lists or lists with a single element.
     '''
-    if not q:  # Check for empty list
-        return False
 
-    if len(q) == 1:  # Check for single element list
+    # Check if the list is empty or has a single element
+    if not q or len(q) == 1:
         return True
 
-    # Check weight condition
+    # Check the weight condition
     if sum(q) > w:
         return False
 
-    # Check if list is balanced (palindromic)
+    # Check if the list is balanced (palindromic)
     left, right = 0, len(q) - 1
     while left < right:
         if q[left] != q[right]:
@@ -50,4 +49,5 @@ def will_it_fly(q, w):
         left += 1
         right -= 1
 
+    # If both conditions are met, return True
     return True

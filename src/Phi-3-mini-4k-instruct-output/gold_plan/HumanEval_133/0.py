@@ -23,7 +23,5 @@ def sum_squares(lst):
     """
     result = 0
     for num in lst:
-        rounded_num = math.ceil(num)
-        squared_num = rounded_num ** 2
-        result += squared_num
+        result += math.ceil(num) ** 2
     return result

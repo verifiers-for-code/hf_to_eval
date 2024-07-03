@@ -26,6 +26,6 @@ def decimal_to_binary(decimal):
 
     Note: Be careful to remove the '0b' prefix from the bin() function result before adding 'db'.
     """
-    binary_str = bin(decimal)[2:]  # Convert decimal to binary and remove '0b' prefix
-    formatted_binary_str = 'db' + binary_str + 'db'  # Add 'db' to the beginning and end of the binary string
-    return formatted_binary_str
+    binary_string = bin(decimal)[2:]  # Remove the '0b' prefix
+    formatted_binary_string = 'db' + binary_string + 'db'
+    return formatted_binary_string

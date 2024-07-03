@@ -6,31 +6,26 @@ def sort_even(l: list):
     [1, 2, 3]
     >>> sort_even([5, 6, 3, 4])
     [3, 6, 5, 4]
+
+    Action Plan:
+    1. Extract even-indexed elements from the input list
+    2. Extract odd-indexed elements from the input list
+    3. Sort the even-indexed elements
+    4. Initialize an empty result list
+    5. Iterate through the sorted even-indexed and original odd-indexed elements:
+       a. Add the current even-indexed element to the result
+       b. If there's a corresponding odd-indexed element, add it to the result
+    6. If there's an extra even-indexed element (input list has odd length), add it to the result
+    7. Return the final result list
     """
-    # Step 1: Extract even-indexed elements from the input list
-    even_elements = [l[i] for i in range(len(l)) if i % 2 == 0]
-    
-    # Step 2: Extract odd-indexed elements from the input list
-    odd_elements = [l[i] for i in range(len(l)) if i % 2 != 0]
-    
-    # Step 3: Sort the even-indexed elements
-    even_elements.sort()
-    
-    # Step 4: Initialize an empty result list
+    even_indices = l[::2]
+    odd_indices = l[1::2]
+    even_indices.sort()
     result = []
-    
-    # Step 5: Iterate through the sorted even-indexed and original odd-indexed elements
-    for i in range(len(even_elements)):
-        # Add the current even-indexed element to the result
-        result.append(even_elements[i])
-        
-        # If there's a corresponding odd-indexed element, add it to the result
-        if i < len(odd_elements):
-            result.append(odd_elements[i])
-    
-    # Step 6: If there's an extra even-indexed element (input list has odd length), add it to the result
-    if len(even_elements) > len(odd_elements):
-        result.append(even_elements[-1])
-    
-    # Step 7: Return the final result list
+    for i in range(len(even_indices)):
+        result.append(even_indices[i])
+        if i < len(odd_indices):
+            result.append(odd_indices[i])
+    if len(even_indices) > len(odd_indices):
+        result.append(even_indices[-1])
     return result

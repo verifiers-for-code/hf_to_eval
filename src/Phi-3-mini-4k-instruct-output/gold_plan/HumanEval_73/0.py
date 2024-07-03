@@ -21,14 +21,9 @@ def smallest_change(arr):
     Note: Remember that array indices start at 0, and you'll need to handle the case
     where the array length is odd correctly.
     """
-    n = len(arr)
     changes_needed = 0
-
+    n = len(arr)
     for i in range(n // 2):
-        start_index = i
-        end_index = n - i - 1
-
-        if arr[start_index] != arr[end_index]:
+        if arr[i] != arr[n - i - 1]:
             changes_needed += 1
-
     return changes_needed

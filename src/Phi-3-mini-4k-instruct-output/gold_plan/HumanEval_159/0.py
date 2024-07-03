@@ -25,6 +25,8 @@ def eat(number, need, remaining):
     * 0 <= need <= 1000
     * 0 <= remaining <= 1000
 
+    Have fun :)
+
     Action Plan:
     1. Compare the number of carrots needed (@need) with the number of remaining carrots (@remaining).
     2. If there are enough remaining carrots:
@@ -36,11 +38,10 @@ def eat(number, need, remaining):
     4. Return the result as a list with two elements:
        [total number of eaten carrots, number of carrots left]
     """
-    if remaining >= need:
+    if need <= remaining:
         total_eaten = number + need
-        remaining_left = remaining - need
+        remaining_carrots = remaining - need
     else:
         total_eaten = number + remaining
-        remaining_left = 0
-    
-    return [total_eaten, remaining_left]
+        remaining_carrots = 0
+    return [total_eaten, remaining_carrots]

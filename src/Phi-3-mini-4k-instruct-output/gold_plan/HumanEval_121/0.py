@@ -13,10 +13,10 @@ def solution(lst):
     Examples
     solution([5, 8, 7, 1]) ==> 12
     solution([3, 3, 3, 3, 3]) ==> 9
-    solution([30, 13, 24, 321]) ==> 0
+    solution([30, 13, 24, 321]) ==>0
     """
-    sum_odd_even_positions = 0
+    sum_odd_even_pos = 0
     for index, value in enumerate(lst):
         if index % 2 == 0 and value % 2 == 1:
-            sum_odd_even_positions += value
-    return sum_odd_even_positions
+            sum_odd_even_pos += value
+    return sum_odd_even_pos

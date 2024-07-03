@@ -24,14 +24,12 @@ def rolling_max(numbers: List[int]) -> List[int]:
     if not numbers:
         return []
 
-    running_max = None
-    result = []
+    running_max = numbers[0]
+    result = [running_max]
 
-    for num in numbers:
-        if running_max is None:
+    for num in numbers[1:]:
+        if num > running_max:
             running_max = num
-        else:
-            running_max = max(running_max, num)
         result.append(running_max)
 
     return result

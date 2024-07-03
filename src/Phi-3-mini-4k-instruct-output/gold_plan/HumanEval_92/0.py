@@ -12,14 +12,25 @@ def any_int(x, y, z):
     any_int(3, -2, 1) ➞ True
     
     any_int(3.6, -2.2, 2) ➞ False
+  
+    Action Plan:
+    1. Check if all input numbers (x, y, and z) are integers
+       - Use a method to verify the type of each input
+    
+    2. If all inputs are integers:
+       a. Check if x is equal to the sum of y and z
+       b. Check if y is equal to the sum of x and z
+       c. Check if z is equal to the sum of x and y
+       - If any of these conditions are true, return True
+    
+    3. If the inputs are not all integers or none of the sum conditions are met:
+       - Return False
+    
+    Note: Remember to handle negative integers as well, as shown in the examples.
     '''
-    # Step 1: Check if all input numbers (x, y, and z) are integers
-    if not all(isinstance(i, int) for i in [x, y, z]):
-        return False
-
-    # Step 2: Check if any of the sum conditions are met
-    if x == y + z or y == x + z or z == x + y:
-        return True
-
-    # Step 3: If the inputs are not all integers or none of the sum conditions are met
+    # Check if all inputs are integers
+    if isinstance(x, int) and isinstance(y, int) and isinstance(z, int):
+        # Check if any of the sum conditions are met
+        if x == y + z or y == x + z or z == x + y:
+            return True
     return False

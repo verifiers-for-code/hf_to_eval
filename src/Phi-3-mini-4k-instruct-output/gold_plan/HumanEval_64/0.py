@@ -38,6 +38,6 @@ def vowels_count(s):
     for char in s:
         if char in vowels:
             count += 1
-    if s.endswith("y"):
+    if s[-1] in ('y', 'Y'):
         count += 1
     return count

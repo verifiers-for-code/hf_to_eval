@@ -9,18 +9,27 @@ def longest(strings: List[str]) -> Optional[str]:
     'a'
     >>> longest(['a', 'bb', 'ccc'])
     'ccc'
+
+    Action Plan:
+    1. Check if the input list is empty. If so, return None immediately.
+    2. If the list is not empty, find the maximum length among all strings:
+       a. Use a list comprehension to get the length of each string.
+       b. Use the max() function to find the maximum length.
+    3. Iterate through the list of strings:
+       a. For each string, check if its length equals the maximum length found.
+       b. If a match is found, return that string immediately (this ensures we return the first occurrence).
+    4. (Note: Step 4 is not necessary as we will always return in step 3, but including for completeness)
+       If no string is returned after the loop, return None (this case should never occur if steps 1-3 are implemented correctly).
+
+    Remember to use type hinting for the function parameters and return value as shown in the function definition.
     """
-    # Step 1: Check if the input list is empty
     if not strings:
         return None
 
-    # Step 2: Find the maximum length among all strings
     max_length = max(len(s) for s in strings)
 
-    # Step 3: Iterate through the list of strings and return the first one with the maximum length
     for s in strings:
         if len(s) == max_length:
             return s
 
-    # Step 4: This step is not necessary as we will always return in step 3, but included for completeness
     return None

@@ -4,28 +4,27 @@ def median(l: list):
     3
     >>> median([-10, 4, 6, 1000, 10, 20])
     15.0
+
+    Action Plan:
+    1. Sort the input list in ascending order.
+    2. Determine the length of the sorted list.
+    3. Check if the length is odd or even:
+       a. If odd:
+          - Calculate the index of the middle element using integer division.
+          - Return the element at that index.
+       b. If even:
+          - Calculate the indices of the two middle elements.
+          - Compute the average of the two middle elements.
+          - Return the result as a float.
+
+    Note: Remember to handle integer division correctly and ensure
+    the result is a float for even-length lists.
     """
-    # Step 1: Sort the input list in ascending order
     l.sort()
-
-    # Step 2: Determine the length of the sorted list
     n = len(l)
-
-    # Step 3: Check if the length is odd or even
     if n % 2 == 0:
-        # If even:
-        # Calculate the indices of the two middle elements
-        mid1 = n // 2 - 1
-        mid2 = n // 2
-
-        # Compute the average of the two middle elements
-        median_value = (l[mid1] + l[mid2]) / 2.0
+        mid1 = l[n//2 - 1]
+        mid2 = l[n//2]
+        return (mid1 + mid2) / 2.0
     else:
-        # If odd:
-        # Calculate the index of the middle element using integer division
-        mid = n // 2
-
-        # Return the element at that index
-        median_value = l[mid]
-
-    return median_value
+        return l[n//2]

@@ -3,7 +3,6 @@ from typing import List
 def rescale_to_unit(numbers: List[float]) -> List[float]:
     """ Given list of numbers (of at least two elements), apply a linear transform to that list,
     such that the smallest number will become 0 and the largest will become 1
-    
     >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
     [0.0, 0.25, 0.5, 0.75, 1.0]
     
@@ -18,20 +17,15 @@ def rescale_to_unit(numbers: List[float]) -> List[float]:
     
     Note: Ensure to handle potential division by zero if all numbers in the list are the same.
     """
-    # Step 1: Find the minimum value in the input list 'numbers'
-    min_value = min(numbers)
+    if len(numbers) < 2:
+        raise ValueError("Input list must contain at least two elements")
     
-    # Step 2: Find the maximum value in the input list 'numbers'
-    max_value = max(numbers)
+    min_val = min(numbers)
+    max_val = max(numbers)
     
-    # Step 3: Calculate the range by subtracting the minimum from the maximum
-    range_value = max_value - min_value
-    
-    # Check if the range is zero (all numbers are the same)
-    if range_value == 0:
+    if min_val == max_val:
         return [0.0] * len(numbers)
     
-    # Step 4: Create a new list by applying the transformation to each number 'x' in 'numbers'
-    transformed_numbers = [(x - min_value) / range_value for x in numbers]
+    range_val = max_val - min_val
     
-    return transformed_numbers
+    return [(x - min_val) / range_val for x in numbers]

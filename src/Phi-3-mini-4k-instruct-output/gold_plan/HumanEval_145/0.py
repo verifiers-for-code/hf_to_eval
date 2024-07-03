@@ -1,38 +1,49 @@
 def order_by_points(nums):
     """
-    Sorts the given list of integers in ascending order according to the sum of their digits.
-    If there are several items with similar sum of their digits, they are ordered based on their index in the original list.
+    Write a function which sorts the given list of integers
+    in ascending order according to the sum of their digits.
+    Note: if there are several items with similar sum of their digits,
+    order them based on their index in original list.
 
-    Args:
-    nums (List[int]): The list of integers to be sorted.
+    For example:
+    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+    >>> order_by_points([]) == []
 
-    Returns:
-    List[int]: The sorted list of integers.
+    Action Plan:
+    1. Define a helper function to calculate the sum of digits for a number:
+       - Handle both positive and negative numbers
+       - Convert the number to a string to easily access its digits
+       - Sum the digits, keeping the sign of the original number
 
-    Example:
-    >>> order_by_points([1, 11, -1, -11, -12])
-    [-1, -11, 1, -12, 11]
-    >>> order_by_points([])
-    []
+    2. Use Python's sorted() function on the input list:
+       - Provide a custom key function that uses the helper function
+       - This ensures sorting based on the sum of digits
+       - The original order is maintained for numbers with the same digit sum
+
+    3. Return the sorted list
     """
 
-    # Step 1: Define a helper function to calculate the sum of digits for a number
     def sum_of_digits(num):
         """
-        Calculates the sum of digits for a given number, preserving the sign of the original number.
-
-        Args:
-        num (int): The number to calculate the sum of digits for.
-
-        Returns:
-        int: The sum of digits for the given number.
+        Helper function to calculate the sum of digits for a number.
+        Handles both positive and negative numbers.
         """
-        num_str = str(abs(num))  # Convert the number to a string and get its absolute value
-        return sum(int(digit) for digit in num_str) + (num < 0)  # Sum the digits and add the sign of the original number
+        # Convert the number to a string to easily access its digits
+        num_str = str(num)
+        # Initialize the sum
+        digit_sum = 0
+        # Iterate through each character in the string
+        for char in num_str:
+            # Add the integer value of the character to the sum
+            digit_sum += int(char)
+        # Return the sum, keeping the sign of the original number
+        return digit_sum if num >= 0 else -digit_sum
 
-    # Step 2: Use Python's sorted() function on the input list
+    # Use Python's sorted() function on the input list
     # Provide a custom key function that uses the helper function
+    # This ensures sorting based on the sum of digits
+    # The original order is maintained for numbers with the same digit sum
     sorted_nums = sorted(nums, key=lambda x: (sum_of_digits(x), nums.index(x)))
 
-    # Step 3: Return the sorted list
+    # Return the sorted list
     return sorted_nums

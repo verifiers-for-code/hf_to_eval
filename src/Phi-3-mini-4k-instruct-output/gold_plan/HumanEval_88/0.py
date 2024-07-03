@@ -10,8 +10,8 @@ def sort_array(array):
     Examples:
     * sort_array([]) => []
     * sort_array([5]) => [5]
-    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
     * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]
+    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
 
     Action Plan:
     1. Check if the input array is empty. If so, return an empty array.
@@ -27,11 +27,15 @@ def sort_array(array):
     if not array:
         return []
 
-    array_copy = array.copy()
-    sum_first_last = array_copy[0] + array_copy[-1]
-    if sum_first_last % 2 == 0:
-        array_copy.sort(reverse=True)
-    else:
-        array_copy.sort()
+    first_element = array[0]
+    last_element = array[-1]
+    sum_first_last = first_element + last_element
 
-    return array_copy
+    sorted_array = array.copy()
+
+    if sum_first_last % 2 == 0:
+        sorted_array.sort(reverse=True)
+    else:
+        sorted_array.sort()
+
+    return sorted_array

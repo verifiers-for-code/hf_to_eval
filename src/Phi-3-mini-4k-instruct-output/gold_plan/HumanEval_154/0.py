@@ -6,20 +6,24 @@ def cycpattern_check(a, b):
     cycpattern_check("abab","baa") => True
     cycpattern_check("efef","eeff") => False
     cycpattern_check("himenss","simen") => True
+
+    Action Plan:
+    1. Store the length of the second word (b) in a variable.
+    2. Create a pattern string that contains all possible rotations of b:
+       - Concatenate b with itself (b + b).
+    3. Iterate through the first word (a):
+       - For each position in 'a', consider a substring of length equal to b.
+    4. For each substring in 'a':
+       - Check if it matches any rotation of b in the pattern string:
+         - Iterate through the pattern string, checking substrings of length equal to b.
+         - If a match is found, return True.
+    5. If no match is found after checking all substrings, return False.
+
+    Note: Be careful with the range of iterations to avoid index out of bounds errors.
     """
-    # Step 1: Store the length of the second word (b) in a variable
-    b_length = len(b)
-
-    # Step 2: Create a pattern string that contains all possible rotations of b
+    b_len = len(b)
     pattern = b + b
-
-    # Step 3: Iterate through the first word (a)
-    for i in range(len(a) - b_length + 1):
-        # Step 4: For each substring in 'a', check if it matches any rotation of b in the pattern string
-        substring = a[i:i+b_length]
-        for j in range(len(pattern) - b_length + 1):
-            if substring == pattern[j:j+b_length]:
-                return True
-
-    # Step 5: If no match is found after checking all substrings, return False
+    for i in range(len(a) - b_len + 1):
+        if a[i:i+b_len] in pattern:
+            return True
     return False

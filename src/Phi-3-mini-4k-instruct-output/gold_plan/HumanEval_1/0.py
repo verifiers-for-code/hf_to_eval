@@ -23,18 +23,18 @@ def separate_paren_groups(paren_string: str) -> List[str]:
     Note: Remember to ignore spaces in the input string during processing.
     """
     result = []
-    current_group = ''
+    current_group = ""
     depth = 0
 
-    for char in paren_string:
-        if char == '(':
+    for char in paren_string.replace(" ", ""):
+        if char == "(":
             depth += 1
             current_group += char
-        elif char == ')':
+        elif char == ")":
             depth -= 1
             current_group += char
             if depth == 0:
-                result.append(current_group.strip())
-                current_group = ''
+                result.append(current_group)
+                current_group = ""
 
     return result

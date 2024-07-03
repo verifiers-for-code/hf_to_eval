@@ -6,7 +6,7 @@ def find_max(words):
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb", "cc"]) == ""aaaaaaa"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
 
     Action Plan:
     1. Understand the input:
@@ -29,16 +29,18 @@ def find_max(words):
     both the number of unique characters (in descending order) and the lexicographical
     order of the words.
     """
-    max_unique_chars = 0
-    max_unique_words = []
+    # Step 2: For each word in the list, count the number of unique characters
+    unique_chars_count = [len(set(word)) for word in words]
 
-    for word in words:
-        unique_chars = len(set(word))
-        if unique_chars > max_unique_chars:
-            max_unique_chars = unique_chars
-            max_unique_words = [word]
-        elif unique_chars == max_unique_chars:
-            max_unique_words.append(word)
+    # Step 3: Determine the maximum number of unique characters among all words
+    max_unique_chars = max(unique_chars_count)
 
+    # Step 4: Create a list of words that have the maximum number of unique characters
+    max_unique_words = [word for word, count in zip(words, unique_chars_count) if count == max_unique_chars]
+
+    # Step 5: If there are multiple words with the same maximum number of unique characters,
+    # sort these words lexicographically (alphabetically)
     max_unique_words.sort()
+
+    # Step 6: Return the first word from the sorted list of words with maximum unique characters
     return max_unique_words[0]

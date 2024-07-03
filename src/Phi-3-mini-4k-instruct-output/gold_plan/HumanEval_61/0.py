@@ -10,26 +10,24 @@ def correct_bracketing(brackets: str):
     True
     >>> correct_bracketing(")(()")
     False
+
+    Action Plan:
+    1. Initialize a counter variable to keep track of open brackets.
+    2. Iterate through each character in the 'brackets' string:
+       a. If the character is an opening bracket "(", increment the counter.
+       b. If the character is a closing bracket ")", decrement the counter.
+       c. If at any point the counter becomes negative, return False
+          (this means a closing bracket appeared before its corresponding opening bracket).
+    3. After the iteration, check if the counter is zero:
+       a. If it's zero, return True (all brackets are properly matched).
+       b. If it's not zero, return False (there are unmatched opening brackets).
     """
-    # Step 1: Initialize a counter variable to keep track of open brackets.
-    open_brackets_count = 0
-
-    # Step 2: Iterate through each character in the 'brackets' string.
-    for bracket in brackets:
-        # a. If the character is an opening bracket "(", increment the counter.
-        if bracket == "(":
-            open_brackets_count += 1
-        # b. If the character is a closing bracket ")", decrement the counter.
-        elif bracket == ")":
-            open_brackets_count -= 1
-        # c. If at any point the counter becomes negative, return False.
-        if open_brackets_count < 0:
+    counter = 0
+    for char in brackets:
+        if char == "(":
+            counter += 1
+        elif char == ")":
+            counter -= 1
+        if counter < 0:
             return False
-
-    # Step 3: After the iteration, check if the counter is zero.
-    # a. If it's zero, return True (all brackets are properly matched).
-    if open_brackets_count == 0:
-        return True
-    # b. If it's not zero, return False (there are unmatched opening brackets).
-    else:
-        return False
+    return counter == 0

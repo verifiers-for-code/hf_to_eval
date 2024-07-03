@@ -25,14 +25,10 @@ def check_if_last_char_is_a_letter(txt):
     if not txt:
         return False
 
-    words = txt.split(' ')
+    words = txt.split()
     last_word = words[-1]
 
     if len(last_word) != 1:
         return False
 
-    last_char = last_word[0]
-    if last_char.isalpha():
-        return True
-    else:
-        return False
+    return last_word.isalpha()

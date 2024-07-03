@@ -16,6 +16,8 @@ def largest_smallest_integers(lst):
        a. If an element is negative and either larger than the current largest negative or the largest negative is None, update the largest negative.
        b. If an element is positive and either smaller than the current smallest positive or the smallest positive is None, update the smallest positive.
     3. Return a tuple containing the largest negative and smallest positive integers.
+
+    Note: This approach avoids using built-in functions like max(), min(), or filter() for a more basic implementation.
     '''
     largest_negative = None
     smallest_positive = None

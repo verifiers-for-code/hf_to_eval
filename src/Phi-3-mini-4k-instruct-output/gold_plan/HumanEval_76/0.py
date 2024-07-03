@@ -26,12 +26,13 @@ def is_simple_power(x, n):
        - If they are not equal, x is not a simple power of n, so return False.
 
     4. Ensure your implementation handles both positive and negative inputs for x and n correctly.
+
+    By following these steps, you'll create a function that correctly determines
+    if x is a simple power of n for all input cases.
     """
     if n == 1:
         return x == 1
-
     power = 1
-    while power < abs(x):
+    while power < x:
         power *= n
-
-    return power == abs(x)
+    return power == x

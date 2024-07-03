@@ -27,8 +27,8 @@ def words_string(s):
     if not s:
         return []
     
-    modified_chars = [char if char != "," else " " for char in s]
-    modified_string = "".join(modified_chars)
-    words = modified_string.split()
+    s = s.replace(",", " ")
+    s = "".join(s)
+    words = s.split()
     
     return words

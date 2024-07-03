@@ -27,7 +27,5 @@ def generate_integers(a, b):
     """
     lower_bound = max(2, min(a, b))
     upper_bound = min(8, max(a, b))
-
-    even_digits = [num for num in range(lower_bound, upper_bound + 1) if num % 2 == 0]
-
-    return even_digits
+    even_integers = [i for i in range(lower_bound, upper_bound + 1) if i % 2 == 0]
+    return even_integers

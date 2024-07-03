@@ -17,18 +17,25 @@ OUTPUT_DIR = MODEL_NAME + "-output"
 # Choose GPU Count
 NUM_GPUS = 1
 # Choose what GPUs to use
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # Evaluation flags, True if you want to evaluate
-EVAL_GOLD = True
+EVAL_GOLD = False
 GOLD_PROMPT_COL = "cleaned_sonnet-3.5_gold_plans"
 EVAL_NONE = True
 NONE_PROMPT_COL = "prompt"
+EVAL_PLANNER = False
+PLANNER_PROMPT_COL = "cleaned-phi3-planner-plans"
+EVAL_SELF = False
+SELF_PROMPT_COL = "cleaned-self_planning_Phi-3-mini-4k-instruct"
 # New Token Count
-MAX_TOKENS = 2048
+MAX_TOKENS = 4096
 # Eval only mode (no generation)
 EVAL_ONLY = False
+# Force Plans In Docstring (everything but gold plans are forced to generate rules)
+FORCE_PLANS = False
 # ==== END CONFIG ==== #
 __MAGIC_SPLITTER__ = "-[[]]-this-is-really-our-highest-priority-[[]]-"
+assert len(os.environ["CUDA_VISIBLE_DEVICES"]) == NUM_GPUS, "CUDA_VISIBLE_DEVICES < or > NUM_GPUS"
 
 def main():
     if EVAL_ONLY:
@@ -36,6 +43,10 @@ def main():
             run_evalplus(os.path.join(OUTPUT_DIR, "gold_plan"))
         if EVAL_NONE:
             run_evalplus(os.path.join(OUTPUT_DIR, "none"))
+        if EVAL_PLANNER:
+            run_evalplus(os.path.join(OUTPUT_DIR, "planner"))
+        if EVAL_SELF:
+            run_evalplus(os.path.join(OUTPUT_DIR, "self"))
         return
 
     response = f"""
@@ -49,7 +60,7 @@ Below is a self-contained Python script that solves the problem:
               tensor_parallel_size=NUM_GPUS, 
               enable_prefix_caching=False, 
               gpu_memory_utilization=0.95, 
-              max_model_len=2048, 
+              max_model_len=4096, 
               trust_remote_code=True,
               max_num_seqs=16)
 
@@ -64,6 +75,12 @@ Below is a self-contained Python script that solves the problem:
 
     if EVAL_NONE:
         process_mode("none", DATASET, NONE_PROMPT_COL, llm, tokenizer, sampling_params, response)
+    
+    if EVAL_PLANNER:
+        process_mode("planner", DATASET, PLANNER_PROMPT_COL, llm, tokenizer, sampling_params, response)
+    
+    if EVAL_SELF:
+        process_mode("self", DATASET, SELF_PROMPT_COL, llm, tokenizer, sampling_params, response)
 
 def process_mode(mode, dataset_name, prompt_key, llm, tokenizer, sampling_params, response):
     dataset = load_dataset(dataset_name, split="test")
@@ -96,7 +113,12 @@ def process_mode(mode, dataset_name, prompt_key, llm, tokenizer, sampling_params
     run_evalplus(output_dir)
 
 def create_prompts(prompt, tokenizer, response, __MAGIC_SPLITTER__):
-    prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. Follow the given plan.\n```\n{prompt.strip()}\n```\n"
+    if EVAL_NONE: # none has no plans
+        prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. \n```\n{prompt.strip()}\n```\n"
+    elif FORCE_PLANS and not EVAL_GOLD: # gold does worse when you force plans
+        prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. Follow the given Action Plan, and ALWAYS HAVE THE DOCSTRING in your answer.\n```\n{prompt.strip()}\n```\n"
+    else:
+        prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. Follow the given Action Plan. \n```\n{prompt.strip()}\n```\n"
     x = tokenizer.apply_chat_template(
         [
             {"role": "user", "content": prompt},
@@ -132,7 +154,7 @@ def convert_to_jsonl(solutions, output_file):
             f.write(json_line + '\n')
 
 def run_evalplus(output_dir):
-    command = f"evalplus.evaluate --dataset humaneval --samples {output_dir} --i-just-wanna-run"
+    command = f"yes | evalplus.evaluate --dataset humaneval --samples {output_dir} --i-just-wanna-run"
     print(f"Running evaluation command: {command}")
     subprocess.run(command, shell=True, check=True)
 

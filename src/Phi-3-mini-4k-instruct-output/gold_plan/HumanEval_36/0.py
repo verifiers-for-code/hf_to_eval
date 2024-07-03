@@ -6,21 +6,28 @@ def fizz_buzz(n: int):
     2
     >>> fizz_buzz(79)
     3
+
+    Action Plan:
+    1. Initialize a container to store numbers meeting the criteria.
+    2. Iterate through numbers from 0 to n-1:
+       a. Check if the current number is divisible by 11 or 13.
+       b. If yes, add it to the container.
+    3. Convert the collected numbers to a single string:
+       a. Convert each number in the container to a string.
+       b. Join all these strings together.
+    4. Count the occurrences of '7' in the resulting string:
+       a. Initialize a counter for '7's.
+       b. Iterate through each character in the string.
+       c. Increment the counter when '7' is encountered.
+    5. Return the final count.
     """
-    # Step 1: Initialize a container to store numbers meeting the criteria
-    numbers = []
-
-    # Step 2: Iterate through numbers from 0 to n-1
+    container = []
     for i in range(n):
-        # Check if the current number is divisible by 11 or 13
         if i % 11 == 0 or i % 13 == 0:
-            numbers.append(i)
-
-    # Step 3: Convert the collected numbers to a single string
-    numbers_str = ''.join(map(str, numbers))
-
-    # Step 4: Count the occurrences of '7' in the resulting string
-    count_7 = numbers_str.count('7')
-
-    # Return the final count
-    return count_7
+            container.append(str(i))
+    string = ''.join(container)
+    count = 0
+    for char in string:
+        if char == '7':
+            count += 1
+    return count

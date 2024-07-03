@@ -12,28 +12,25 @@ def special_factorial(n):
 
     Action Plan:
     1. Initialize two variables:
-       - One to store the factorial of the current number (current_factorial)
-       - One to store the accumulating special factorial result (special_factorial_result)
+       - One to store the factorial of the current number
+       - One to store the accumulating special factorial result
 
     2. Create a loop that iterates from 1 to n (inclusive)
 
     3. Inside the loop:
-       a. Update the factorial of the current number (current_factorial)
+       a. Update the factorial of the current number
        b. Multiply the special factorial result by the current factorial
 
     4. After the loop ends, return the final special factorial result
+
+    Note: Be careful with the order of operations and make sure to update
+    variables correctly in each iteration.
     """
-    # Initialize variables
-    current_factorial = 1
+    factorial = 1
     special_factorial_result = 1
 
-    # Iterate from 1 to n (inclusive)
     for i in range(1, n + 1):
-        # Update the factorial of the current number
-        current_factorial *= i
+        factorial *= i
+        special_factorial_result *= factorial
 
-        # Multiply the special factorial result by the current factorial
-        special_factorial_result *= current_factorial
-
-    # Return the final special factorial result
     return special_factorial_result

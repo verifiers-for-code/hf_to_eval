@@ -1,0 +1,25 @@
+def generate_integers(a, b):
+    """
+    Given two positive integers a and b, return the even digits between a
+    and b, in ascending order.
+    """
+    # Step 1: Ensure `a` and `b` are positive integers
+    if not (isinstance(a, int) and isinstance(b, int)):
+        raise ValueError("Both `a` and `b` must be integers.")
+    if a <= 0 or b <= 0:
+        raise ValueError("Both `a` and `b` must be positive integers.")
+
+    # Step 2: Generate a list of integers from `a` to `b` (inclusive)
+    numbers = list(range(a, b + 1))
+
+    # Step 3: Create a helper function to extract and filter even digits
+    def extract_even_digits(num):
+        return [int(digit) for digit in str(num) if int(digit) % 2 == 0]
+
+    # Step 4: Apply the helper function to each integer in the list
+    even_digits = [digit for num in numbers for digit in extract_even_digits(num)]
+
+    # Step 5: Remove odd digits and sort the remaining list
+    even_digits = sorted(set(even_digits))
+
+    return even_digits

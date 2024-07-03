@@ -1,9 +1,11 @@
 from typing import List
-from collections import Counter
+
 
 def remove_duplicates(numbers: List[int]) -> List[int]:
     """ From a list of integers, remove all elements that occur more than once.
     Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
     
     Action Plan:
     1. Create a data structure to count the occurrences of each number in the input list.
@@ -18,19 +20,27 @@ def remove_duplicates(numbers: List[int]) -> List[int]:
        b. If the count is 1 (appears only once), add it to the result list.
     
     5. Return the result list containing only the unique elements, preserving the original order.
-    """
-    # Step 1: Count occurrences of each number using Counter from collections
-    count_dict = Counter(numbers)
     
-    # Step 3: Create a new empty list to store the result
+    Note: Try to implement this solution in a single pass through the list if possible,
+    but prioritize correctness over optimization initially.
+    """
+    # Step 1: Create a dictionary to count occurrences
+    count_dict = {}
+    
+    # Step 2: Populate the dictionary with counts
+    for number in numbers:
+        if number in count_dict:
+            count_dict[number] += 1
+        else:
+            count_dict[number] = 1
+    
+    # Step 3: Create a new list for the result
     result = []
     
-    # Step 4: Iterate through the original input list
-    for num in numbers:
-        # Step 4a: Check the count of the current number
-        if count_dict[num] == 1:
-            # Step 4b: If the count is 1, add it to the result list
-            result.append(num)
+    # Step 4: Iterate through the original list and add unique elements to the result
+    for number in numbers:
+        if count_dict[number] == 1:
+            result.append(number)
     
-    # Step 5: Return the result list containing only the unique elements, preserving the original order
+    # Step 5: Return the result list
     return result

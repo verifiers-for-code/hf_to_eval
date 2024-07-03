@@ -1,6 +1,6 @@
 import math
 
-def is_prime(p: int) -> bool:
+def is_prime(p):
     """
     Check if a number is prime.
     """
@@ -11,16 +11,15 @@ def is_prime(p: int) -> bool:
             return False
     return True
 
-def prime_fib(n: int) -> int:
+def prime_fib(n: int):
     """
-    Returns the n-th number that is a Fibonacci number and it's also prime.
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
     """
-    fib_sequence = [0, 1]
-    prime_fib_count = 0
-
+    fib_seq = [0, 1]
     while True:
-        next_fib = fib_sequence[-1] + fib_sequence[-2]
+        next_fib = fib_seq[-1] + fib_seq[-2]
+        fib_seq.append(next_fib)
         if is_prime(next_fib):
-            prime_fib_count += 1
-            if prime_fib_count == n:
+            n -= 1
+            if n == 0:
                 return next_fib

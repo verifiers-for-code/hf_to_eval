@@ -18,12 +18,14 @@ def histogram(test):
     5. Find the maximum count among all letters.
     6. Create a dictionary with all letters that have the maximum count.
     7. Return the resulting dictionary.
+
     """
     result = {}
-    if not test:
+    letters = test.split()
+
+    if not letters:
         return result
 
-    letters = test.split()
     letter_counts = {}
     for letter in letters:
         if letter in letter_counts:
@@ -32,6 +34,9 @@ def histogram(test):
             letter_counts[letter] = 1
 
     max_count = max(letter_counts.values())
-    max_letters = {letter: count for letter, count in letter_counts.items() if count == max_count}
 
-    return max_letters
+    for letter, count in letter_counts.items():
+        if count == max_count:
+            result[letter] = count
+
+    return result

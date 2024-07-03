@@ -11,7 +11,8 @@ def strlen(string: str) -> int:
        a. For each character, increment 'count' by 1
     3. After the iteration is complete, return the final value of 'count'
 
-    Note: This plan avoids using any built-in length functions and implements the length calculation manually.
+    Note: This plan avoids using any built-in length functions and 
+    implements the length calculation manually.
     """
     count = 0
     for char in string:

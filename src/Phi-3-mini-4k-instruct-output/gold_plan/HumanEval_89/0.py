@@ -1,28 +1,34 @@
 def encrypt(s):
-    # Step 1: Create a string variable containing the lowercase alphabet in order.
+    """Create a function encrypt that takes a string as an argument and
+    returns a string encrypted with the alphabet being rotated. 
+    The alphabet should be rotated in a manner such that the letters 
+    shift down by two multiplied to two places.
+    For example:
+    encrypt('hi') returns 'lm'
+    encrypt('asdfghjkl') returns 'ewhjklnop'
+    encrypt('gf') returns 'kj'
+    encrypt('et') returns 'ix'
+
+    Action Plan:
+    1. Create a string variable containing the lowercase alphabet in order.
+    2. Initialize an empty string to store the encrypted result.
+    3. Iterate through each character in the input string 's':
+       a. If the character is in the alphabet:
+          i. Find its index in the alphabet.
+          ii. Calculate the new index by adding 4 (2*2) to the current index.
+          iii. Use modulo 26 to wrap around if the new index exceeds 25.
+          iv. Get the character at the new index in the alphabet.
+       b. If the character is not in the alphabet, keep it unchanged.
+       c. Append the resulting character to the output string.
+    4. Return the final encrypted string.
+    """
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    
-    # Step 2: Initialize an empty string to store the encrypted result.
-    encrypted_result = ''
-    
-    # Step 3: Iterate through each character in the input string 's'.
+    encrypted_string = ''
     for char in s:
-        # Check if the character is in the alphabet.
         if char in alphabet:
-            # Find its index in the alphabet.
             index = alphabet.index(char)
-            
-            # Calculate the new index by adding 4 (2*2) to the current index.
             new_index = (index + 4) % 26
-            
-            # Get the character at the new index in the alphabet.
-            encrypted_char = alphabet[new_index]
-            
-            # Append the resulting character to the output string.
-            encrypted_result += encrypted_char
+            encrypted_string += alphabet[new_index]
         else:
-            # If the character is not in the alphabet, keep it unchanged.
-            encrypted_result += char
-    
-    # Step 4: Return the final encrypted string.
-    return encrypted_result
+            encrypted_string += char
+    return encrypted_string

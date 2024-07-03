@@ -8,7 +8,22 @@ def below_zero(operations: List[int]) -> bool:
     False
     >>> below_zero([1, 2, -4, 5])
     True
+
+    Action Plan:
+    1. Initialize a variable to keep track of the account balance, starting at zero.
+    2. Loop through each operation in the 'operations' list:
+       a. Update the balance by adding the current operation (positive for deposits, negative for withdrawals).
+       b. Check if the balance has become negative:
+          - If yes, immediately return True as the balance has fallen below zero.
+    3. If the loop completes without returning True, it means the balance never fell below zero.
+    4. Return False after the loop ends.
+
+    Remember:
+    - Positive numbers in 'operations' represent deposits (increasing balance).
+    - Negative numbers in 'operations' represent withdrawals (decreasing balance).
+    - The function should return as soon as the balance becomes negative, not at the end of all operations.
     """
+
     balance = 0
     for operation in operations:
         balance += operation

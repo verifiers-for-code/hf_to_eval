@@ -5,28 +5,26 @@ def digits(n):
     digits(1)  == 1
     digits(4)  == 0
     digits(235) == 15
+
+    Action Plan:
+    1. Initialize variables to store the product of odd digits and count of odd digits.
+    2. Convert the input number to a string to iterate through its digits.
+    3. For each digit in the number:
+       a. Convert the digit back to an integer.
+       b. Check if the digit is odd (hint: use modulo operator).
+       c. If odd, multiply it with the product and increment the odd count.
+    4. After the loop, check if any odd digits were found:
+       a. If no odd digits (count is 0), return 0.
+       b. Otherwise, return the calculated product.
     """
-    # Step 1: Initialize variables to store the product of odd digits and count of odd digits.
     product = 1
     odd_count = 0
-
-    # Step 2: Convert the input number to a string to iterate through its digits.
-    n_str = str(n)
-
-    # Step 3: For each digit in the number
-    for digit in n_str:
-        # a. Convert the digit back to an integer.
-        digit_int = int(digit)
-
-        # b. Check if the digit is odd (hint: use modulo operator).
-        if digit_int % 2 != 0:
-            # c. If odd, multiply it with the product and increment the odd count.
-            product *= digit_int
+    for digit in str(n):
+        digit = int(digit)
+        if digit % 2 == 1:
+            product *= digit
             odd_count += 1
-
-    # Step 4: After the loop, check if any odd digits were found
     if odd_count == 0:
-        # a. If no odd digits (count is 0), return 0.
         return 0
-    # b. Otherwise, return the calculated product.
-    return product
+    else:
+        return product

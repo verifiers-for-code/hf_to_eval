@@ -28,14 +28,14 @@ def solve(N):
     # Step 2: Create a list of integers by converting each character in the string back to an integer
     digits = [int(digit) for digit in N_str]
     
-    # Step 3: Calculate the total sum of all digits
+    # Step 3: Use the sum() function to calculate the total sum of all digits
     total_sum = sum(digits)
     
-    # Step 4: Convert the sum to its binary representation
+    # Step 4: Convert the sum to its binary representation using the bin() function
     binary_sum = bin(total_sum)
     
-    # Step 5: Remove the '0b' prefix from the binary string
+    # Step 5: Remove the '0b' prefix from the binary string to get the final result
     result = binary_sum[2:]
     
-    # Return the resulting binary string
+    # Step 6: Return the resulting binary string
     return result
