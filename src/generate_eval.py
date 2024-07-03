@@ -9,6 +9,7 @@ import json
 # ==== CONFIG ==== #
 # Model
 MODEL = "microsoft/Phi-3-mini-4k-instruct"
+# MODEL = "microsoft/Phi-3-mini-4k-instruct:4f818b1"
 MODEL_NAME = MODEL.split('/')[-1]
 # HF
 DATASET = "verifiers-for-code/humaneval_plan_generation"
@@ -21,18 +22,18 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # Evaluation flags, True if you want to evaluate
 EVAL_GOLD = False
 GOLD_PROMPT_COL = "cleaned_sonnet-3.5_gold_plans"
-EVAL_NONE = True
+EVAL_NONE = False
 NONE_PROMPT_COL = "prompt"
-EVAL_PLANNER = False
+EVAL_PLANNER = True
 PLANNER_PROMPT_COL = "cleaned-phi3-planner-plans"
-EVAL_SELF = False
+EVAL_SELF = True
 SELF_PROMPT_COL = "cleaned-self_planning_Phi-3-mini-4k-instruct"
 # New Token Count
-MAX_TOKENS = 4096
+MAX_TOKENS = 2048
 # Eval only mode (no generation)
 EVAL_ONLY = False
 # Force Plans In Docstring (everything but gold plans are forced to generate rules)
-FORCE_PLANS = False
+FORCE_PLANS = True
 # ==== END CONFIG ==== #
 __MAGIC_SPLITTER__ = "-[[]]-this-is-really-our-highest-priority-[[]]-"
 assert len(os.environ["CUDA_VISIBLE_DEVICES"]) == NUM_GPUS, "CUDA_VISIBLE_DEVICES < or > NUM_GPUS"
@@ -62,7 +63,8 @@ Below is a self-contained Python script that solves the problem:
               gpu_memory_utilization=0.95, 
               max_model_len=4096, 
               trust_remote_code=True,
-              max_num_seqs=16)
+              max_num_seqs=16,
+              )
 
     tokenizer = llm.get_tokenizer()
 
@@ -116,7 +118,7 @@ def create_prompts(prompt, tokenizer, response, __MAGIC_SPLITTER__):
     if EVAL_NONE: # none has no plans
         prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. \n```\n{prompt.strip()}\n```\n"
     elif FORCE_PLANS and not EVAL_GOLD: # gold does worse when you force plans
-        prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. Follow the given Action Plan, and ALWAYS HAVE THE DOCSTRING in your answer.\n```\n{prompt.strip()}\n```\n"
+        prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. Follow the given Action Plan, and ALWAYS HAVE THE DOCSTRING with the Action Plan in your answer.\n```\n{prompt.strip()}\n```\n"
     else:
         prompt = f"Please provide a self-contained Python script that solves the following problem in a markdown code block. Follow the given Action Plan. \n```\n{prompt.strip()}\n```\n"
     x = tokenizer.apply_chat_template(
@@ -124,7 +126,8 @@ def create_prompts(prompt, tokenizer, response, __MAGIC_SPLITTER__):
             {"role": "user", "content": prompt},
             {"role": "assistant", "content": response},
         ],
-        tokenize=False).split(__MAGIC_SPLITTER__)[0]
+        tokenize=False,
+        add_generation_prompt=True).split(__MAGIC_SPLITTER__)[0]
     return x
 
 def get_vllm_code(llm, prompts, sampling_params):
