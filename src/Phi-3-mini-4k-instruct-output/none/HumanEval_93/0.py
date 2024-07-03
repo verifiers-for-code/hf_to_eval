@@ -12,19 +12,19 @@ def encode(message):
     >>> encode('This is a message')
     'tHKS KS C MGSSCGG'
     """
-    vowels = 'aeiouAEIOU'
+    vowels = 'aeiou'
     encoded_message = ''
     for char in message:
-        if char in vowels:
-            if char.islower():
-                encoded_message += chr((ord(char) - ord('a') + 2) % 26 + ord('a'))
-            else:
+        if char.lower() in vowels:
+            if char.isupper():
                 encoded_message += chr((ord(char) - ord('A') + 2) % 26 + ord('A'))
-        elif char.isalpha():
-            if char.islower():
-                encoded_message += char.upper()
             else:
+                encoded_message += chr((ord(char) - ord('a') + 2) % 26 + ord('a'))
+        elif char.isalpha():
+            if char.isupper():
                 encoded_message += char.lower()
+            else:
+                encoded_message += char.upper()
         else:
             encoded_message += char
     return encoded_message

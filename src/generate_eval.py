@@ -22,12 +22,18 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # Evaluation flags, True if you want to evaluate
 EVAL_GOLD = False
 GOLD_PROMPT_COL = "cleaned_sonnet-3.5_gold_plans"
+
 EVAL_NONE = False
 NONE_PROMPT_COL = "prompt"
-EVAL_PLANNER = True
-PLANNER_PROMPT_COL = "cleaned-phi3-planner-plans"
-EVAL_SELF = True
+
+EVAL_PLANNER_NON_GRAN = True
+PLANNER_PROMPT_NON_GRAN_COL = "cleaned-phi3-planner-plans"
+
+EVAL_SELF = False
 SELF_PROMPT_COL = "cleaned-self_planning_Phi-3-mini-4k-instruct"
+
+EVAL_PLANNER_GRAN = False
+PLANNER_PROMPT_GRAN_COL = "cleaned-phi3-planner-granular"
 # New Token Count
 MAX_TOKENS = 2048
 # Eval only mode (no generation)
@@ -44,8 +50,10 @@ def main():
             run_evalplus(os.path.join(OUTPUT_DIR, "gold_plan"))
         if EVAL_NONE:
             run_evalplus(os.path.join(OUTPUT_DIR, "none"))
-        if EVAL_PLANNER:
-            run_evalplus(os.path.join(OUTPUT_DIR, "planner"))
+        if EVAL_PLANNER_NON_GRAN:
+            run_evalplus(os.path.join(OUTPUT_DIR, "planner_non_gran"))
+        if EVAL_PLANNER_GRAN:
+            run_evalplus(os.path.join(OUTPUT_DIR, "planner_gran"))
         if EVAL_SELF:
             run_evalplus(os.path.join(OUTPUT_DIR, "self"))
         return
@@ -75,11 +83,17 @@ Below is a self-contained Python script that solves the problem:
     if EVAL_GOLD:
         process_mode("gold_plan", DATASET, GOLD_PROMPT_COL, llm, tokenizer, sampling_params, response)
 
-    if EVAL_NONE:
+    if EVAL_NONE: # for none, make it 512
+        # sampling_params = SamplingParams(
+        #     temperature=0.0, top_p=0.95, max_tokens=512,
+        # )
         process_mode("none", DATASET, NONE_PROMPT_COL, llm, tokenizer, sampling_params, response)
     
-    if EVAL_PLANNER:
-        process_mode("planner", DATASET, PLANNER_PROMPT_COL, llm, tokenizer, sampling_params, response)
+    if EVAL_PLANNER_NON_GRAN:
+        process_mode("planner_non_gran", DATASET, PLANNER_PROMPT_NON_GRAN_COL, llm, tokenizer, sampling_params, response)
+    
+    if EVAL_PLANNER_GRAN:
+        process_mode("planner_gran", DATASET, PLANNER_PROMPT_GRAN_COL, llm, tokenizer, sampling_params, response)
     
     if EVAL_SELF:
         process_mode("self", DATASET, SELF_PROMPT_COL, llm, tokenizer, sampling_params, response)

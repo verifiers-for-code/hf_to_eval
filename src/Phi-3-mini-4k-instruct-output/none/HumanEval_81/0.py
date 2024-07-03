@@ -43,12 +43,4 @@ def numerical_letter_grade(grades):
             letter_grades.append('C')
         elif grade > 1.3:
             letter_grades.append('C-')
-        elif grade > 1.0:
-            letter_grades.append('D+')
-        elif grade > 0.7:
-            letter_grades.append('D')
-        elif grade > 0.0:
-            letter_grades.append('D-')
-        else:
-            letter_grades.append('E')
-    return letter_grades
+        elif grade > 

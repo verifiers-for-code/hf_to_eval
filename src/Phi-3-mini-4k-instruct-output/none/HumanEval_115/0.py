@@ -48,5 +48,4 @@ def max_fill(grid, capacity):
         # Calculate the number of times the bucket needs to be lowered to empty the well
         num_lowers += math.ceil(num_units / capacity)
 
-    # Return the total number of times the buckets need to be lowered
-    return num_lowers
+    # Return the total number of times the buckets need to
